@@ -1,0 +1,11 @@
+**/*target
+**/*.idea
+**/*.iws
+**/*.iml
+**/*.ipr
+**/*.setting
+**/*.project
+**/*.classpath
+
+
+
