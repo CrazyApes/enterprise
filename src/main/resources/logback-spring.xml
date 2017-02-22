@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 定义文件输出格式 -->
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+    <!-- 定义日志文件输出路径（一般由生产环境使用） -->
+    <property name="FILE_PATH" value="/mnt/root/log" />
+
+    <!-- 开发环境日志配置 -->
+    <springProfile name="dev">
+        <!-- 日志信息打印在控制台 -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!-- 配置在项目包路径下的所有类的日志级别都为DEBUG -->
+        <logger name="com.crazyit" level="debug"/>
+
+        <!-- 根日志级别为INFO -->
+        <root level="info">
+            <appender-ref ref="CONSOLE" />
+        </root>
+    </springProfile>
+
+    <!-- 生产环境日志配置 -->
+    <springProfile name="prod">
+        <!-- 定义日志信息输出在文件 -->
+        <appender name="PROD_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 引用日志文件路径 -->
+            <file>${PRO_FILE_PATH}</file>
+            <!-- 定义每天输出一个文件 -->
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${PRO_FILE_PATH}/warn.%d{yyyy-MM-dd}.log</fileNamePattern>
+                <!-- 定义历史文件最大数量 -->
+                <MaxHistory>200</MaxHistory>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>${PATTERN}</pattern>
+            </layout>
+        </appender>
+
+        <!-- 定义根日志级别为WARN -->
+        <root level="warn">
+            <appender-ref ref="PROD_FILE" />
+        </root>
+    </springProfile>
+
+</configuration>
