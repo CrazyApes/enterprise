@@ -15,8 +15,8 @@ import springfox.documentation.spring.web.plugins.Docket
  * Created on 2017/2/22.
  */
 @Configuration
-@ConfigurationProperties("swagger.config")
-open class SwaggerConfig(
+@ConfigurationProperties("swagger2.config")
+open class Swagger2Config(
 	var title: String = "",
     var author: String = "",
     var version: String = "",

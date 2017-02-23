@@ -36,7 +36,7 @@ spring:
       naming:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
-swagger:
+swagger2:
   config:
     title: Http/Https Interface Description
     author: Author --> CrazyApeDX
