@@ -1,10 +1,8 @@
 package com.crazyit.foundation.entity
 
 import com.crazyit.core.constant.Global
-import com.crazyit.core.constant.enum.DataOrigin
 import com.crazyit.core.constant.enum.Sex
 import com.crazyit.core.constant.enum.UserStatus
-import com.crazyit.core.dev.AppEntity
 import org.springframework.format.annotation.DateTimeFormat
 import java.util.*
 import javax.persistence.*

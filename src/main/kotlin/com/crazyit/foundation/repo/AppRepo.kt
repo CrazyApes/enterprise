@@ -1,5 +1,6 @@
-package com.crazyit.core.dev
+package com.crazyit.foundation.repo
 
+import com.crazyit.foundation.entity.AppEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.data.repository.NoRepositoryBean

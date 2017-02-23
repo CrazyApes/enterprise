@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>enterprise</name>
-	<description></description>
+	<description>CrazyApes团队编写的企业服务项目</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -111,6 +111,18 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
+        </dependency>
+
+        <!-- JSON解析: GSON -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <!-- 加解密工具 -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
         </dependency>
 	</dependencies>
 

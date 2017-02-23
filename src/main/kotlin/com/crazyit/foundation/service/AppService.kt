@@ -1,6 +1,7 @@
-package com.crazyit.core.dev
+package com.crazyit.foundation.service
 
 import com.crazyit.core.constant.Global
+import com.crazyit.foundation.entity.AppEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable

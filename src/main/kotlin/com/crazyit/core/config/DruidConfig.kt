@@ -37,9 +37,7 @@ open class DruidConfig(
     var servletResetEnable: String = "",
     var servletUrl: String = "",
     var filterPattern: String = "",
-    var filterExclusions: String = "",
-    var filterPrincipalSessionName: String = "",
-    var filterProfileEnable: String = ""
+    var filterExclusions: String = ""
 ) {
 
     @Bean(initMethod = "init", destroyMethod = "close")
@@ -79,8 +77,6 @@ open class DruidConfig(
         val register: FilterRegistrationBean = FilterRegistrationBean(WebStatFilter())
         register.addUrlPatterns(filterPattern)
         register.addInitParameter("exclusions", filterExclusions)
-        register.addInitParameter("principalSessionName", filterPrincipalSessionName)
-        register.addInitParameter("filterProfileEnable", filterProfileEnable)
         return register
     }
 }

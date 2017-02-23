@@ -1,4 +1,4 @@
-package com.crazyit.core.dev
+package com.crazyit.foundation.entity
 
 import com.crazyit.core.constant.enum.DataOrigin
 import org.springframework.format.annotation.DateTimeFormat
@@ -23,9 +23,6 @@ abstract class AppEntity {
 	@Column(length = 10, nullable = false, updatable = false)
 	@Enumerated(EnumType.STRING)
 	var createOrigin: DataOrigin = DataOrigin.BUSINESS
-
-	@Column(length = 15, nullable = false, updatable = false)
-	var createIp: String = "UNKNOWN"
 
 	@Column(nullable = false, updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

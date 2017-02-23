@@ -9,6 +9,8 @@ import java.util.*
  */
 object Global {
 
+	val DEFAULT_VISITOR_KEY = "ENTERPRICE_VISITOR"
+
 	val DEFAULT_START_TIME: Date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("1900-01-01 00:00:00")
 
 	val DEFAULT_HEAD_IMAGE_URI: String = ""
