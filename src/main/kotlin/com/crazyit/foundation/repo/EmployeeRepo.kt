@@ -1,6 +1,6 @@
 package com.crazyit.foundation.repo
 
-import com.crazyit.foundation.entity.User
+import com.crazyit.foundation.entity.Employee
 import org.springframework.stereotype.Repository
 
 /**
@@ -8,4 +8,4 @@ import org.springframework.stereotype.Repository
  * Created on 2017/2/23.
  */
 @Repository
-interface UserRepo : AppRepo<User>
+interface EmployeeRepo : AppRepo<Employee>

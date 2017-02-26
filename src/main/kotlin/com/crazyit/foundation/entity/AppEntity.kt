@@ -1,8 +1,5 @@
 package com.crazyit.foundation.entity
 
-import com.crazyit.core.constant.enum.DataOrigin
-import org.springframework.format.annotation.DateTimeFormat
-import java.util.*
 import javax.persistence.*
 
 /**
@@ -15,18 +12,7 @@ abstract class AppEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	var id: Long = 0L
-
-	@Column(nullable = false, updatable = false)
-	var createId: Long = 0L
-
-	@Column(length = 10, nullable = false, updatable = false)
-	@Enumerated(EnumType.STRING)
-	var createOrigin: DataOrigin = DataOrigin.BUSINESS
-
-	@Column(nullable = false, updatable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	var createTime: Date = Date()
+	open var id: Long = 0L
 
 	fun isPersistent(): Boolean {
 		return this.id != 0L
@@ -48,6 +34,4 @@ abstract class AppEntity {
 	override fun hashCode(): Int {
 		return id.hashCode()
 	}
-
-
 }

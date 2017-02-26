@@ -13,18 +13,18 @@ import javax.persistence.*
  */
 @Entity
 @Table(name = "USER")
-open class User(
+open class Employee(
 
 	// 用户姓名
 	@Column(length = 10, nullable = false)
 	var name: String,
 
 	// 用户角色
-    @ManyToOne(targetEntity = Role::class)
+	@ManyToOne(targetEntity = Role::class)
     @JoinColumn(name = "ROLE_ID")
     var role: Role
 
-): AppEntity() {
+) : AppEntity() {
 
 	// 用户头像图片路径
 	@Column(length = 40, nullable = false)

@@ -1,6 +1,6 @@
-debug: true
+debug: false
 server:
-  port: 8080
+  port: 8000
 logging:
   config: classpath:logback-spring.xml
 
@@ -41,5 +41,4 @@ swagger2:
     title: Http/Https Interface Description
     author: Author --> CrazyApeDX
     version: 0.0.1-SNAPSHOT
-    host: api.html
     api-locations: com.crazyit.web.controller

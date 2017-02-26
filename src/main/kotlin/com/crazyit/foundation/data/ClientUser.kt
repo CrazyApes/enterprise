@@ -6,7 +6,7 @@ import com.crazyit.core.token.Token
 import com.crazyit.core.token.TokenHead
 import com.crazyit.core.token.TokenPayload
 import com.crazyit.core.token.TokenSignature
-import com.crazyit.foundation.entity.User
+import com.crazyit.foundation.entity.Employee
 import java.text.SimpleDateFormat
 
 /**
@@ -27,34 +27,34 @@ data class ClientUser(
 
 		val dateFormat: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
-		fun init(user: User): ClientUser {
+		fun init(employee: Employee): ClientUser {
 			return ClientUser(
-				token = this.createToken(user),
-				id = user.id,
-				roleTitle = user.role.title,
-				name = user.name,
-				headImageUri = user.headImageUri,
+				token = this.createToken(employee),
+				id = employee.id,
+				roleTitle = employee.role.title,
+				name = employee.name,
+				headImageUri = employee.headImageUri,
 				sex = {
-					if (user.sex == Sex.MALE) "男"
-					else if (user.sex == Sex.FEMALE) "女"
+					if (employee.sex == Sex.MALE) "男"
+					else if (employee.sex == Sex.FEMALE) "女"
 					else "保密"
 				},
-				birthday = dateFormat.format(user.birthday),
+				birthday = dateFormat.format(employee.birthday),
 				status = {
-					if (user.status == UserStatus.ACTIVE) "在职"
+					if (employee.status == UserStatus.ACTIVE) "在职"
 					else "离职"
 				}
 			)
 
 		}
 
-		private fun createToken(user: User): String {
+		private fun createToken(employee: Employee): String {
 			return Token(
 				payLoad = TokenPayload(
-					id = user.id,
-					name = user.name,
-					roleId = user.role.id,
-					status = user.status
+					id = employee.id,
+					name = employee.name,
+					roleId = employee.role.id,
+					status = employee.status
 				)
 			).toString()
 		}

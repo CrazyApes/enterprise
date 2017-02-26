@@ -17,7 +17,7 @@ open class TestController {
 
 	@ApiOperation(value = "测试的接口", notes = "就这样吧")
 	@GetMapping
-	fun testGet(request: HttpServletRequest): ResponseEntity<*> {
-		return ResponseEntity.ok("OK")
+	fun testGet(param: String?): ResponseEntity<*> {
+		return ResponseEntity.ok(null)
 	}
 }

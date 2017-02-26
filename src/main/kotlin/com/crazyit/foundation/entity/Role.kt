@@ -1,6 +1,5 @@
 package com.crazyit.foundation.entity
 
-import com.crazyit.foundation.entity.AppEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table

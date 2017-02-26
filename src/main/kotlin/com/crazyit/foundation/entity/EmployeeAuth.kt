@@ -11,7 +11,7 @@ import javax.persistence.Table
  */
 @Entity
 @Table(name = "USER_AUTH")
-open class UserAuth(
+open class EmployeeAuth(
 
 	@Column(nullable = false, updatable = false, unique = true)
 	var userId: Long,
@@ -23,6 +23,7 @@ open class UserAuth(
 	// 密码，以MD5加密的方式存储在数据库
 	@Column(length = 36, nullable = false)
     var password: String
+
 ) : AppEntity() {
 
 	// 用户邮箱（暂未开通）

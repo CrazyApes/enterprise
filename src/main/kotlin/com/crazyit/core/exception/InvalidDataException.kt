@@ -2,9 +2,9 @@ package com.crazyit.core.exception
 
 /**
  * @author CrazyApeDX
- * Created on 2017/2/23.
+ * Created on 2017/2/25.
  */
-class InvalidParamsException(
-	override var message: String,
-    override var notice: String
+class InvalidDataException(
+override var message: String,
+override var notice: String
 ) : AppException(message = message, notice = notice)

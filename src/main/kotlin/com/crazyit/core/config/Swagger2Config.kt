@@ -20,7 +20,6 @@ open class Swagger2Config(
 	var title: String = "",
     var author: String = "",
     var version: String = "",
-    var host: String = "",
     var apiLocation: String = ""
 ) {
 
@@ -36,7 +35,6 @@ open class Swagger2Config(
 	@Bean
 	open fun docket(): Docket {
 		return Docket(DocumentationType.SWAGGER_2)
-			.host(this.host)
 			.apiInfo(this.apiInfo())
 			.select()
 			.apis(RequestHandlerSelectors.basePackage(this.apiLocation))
