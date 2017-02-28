@@ -1,4 +1,4 @@
-package com.crazyit.foundation.entity
+package com.crazyit.foundation
 
 import javax.persistence.*
 

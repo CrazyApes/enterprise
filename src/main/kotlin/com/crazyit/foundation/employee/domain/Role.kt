@@ -1,5 +1,6 @@
-package com.crazyit.foundation.entity
+package com.crazyit.foundation.employee.domain
 
+import com.crazyit.foundation.AppEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table

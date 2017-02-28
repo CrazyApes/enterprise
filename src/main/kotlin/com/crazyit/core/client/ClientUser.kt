@@ -1,12 +1,10 @@
-package com.crazyit.foundation.data
+package com.crazyit.core.client
 
 import com.crazyit.core.constant.enum.Sex
 import com.crazyit.core.constant.enum.UserStatus
 import com.crazyit.core.token.Token
-import com.crazyit.core.token.TokenHead
 import com.crazyit.core.token.TokenPayload
-import com.crazyit.core.token.TokenSignature
-import com.crazyit.foundation.entity.Employee
+import com.crazyit.foundation.employee.domain.Employee
 import java.text.SimpleDateFormat
 
 /**

@@ -1,6 +1,7 @@
-package com.crazyit.foundation.entity
+package com.crazyit.foundation.manage.domain
 
 import com.crazyit.core.exception.InvalidDataException
+import com.crazyit.foundation.AppEntity
 import java.util.*
 import javax.persistence.*
 

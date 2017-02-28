@@ -1,4 +1,6 @@
-package com.crazyit.foundation.service
+package com.crazyit.service
+
+import com.crazyit.foundation.AppService
 
 /**
  * @author CrazyApeDX

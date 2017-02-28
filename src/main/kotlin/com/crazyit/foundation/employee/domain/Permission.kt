@@ -1,4 +1,6 @@
-package com.crazyit.foundation.entity
+package com.crazyit.foundation.employee.domain
+
+import com.crazyit.foundation.AppEntity
 
 /**
  * @author CrazyApeDX

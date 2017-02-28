@@ -1,6 +1,7 @@
-package com.crazyit.foundation.repo
+package com.crazyit.foundation.employee.dao
 
-import com.crazyit.foundation.entity.Role
+import com.crazyit.foundation.AppRepo
+import com.crazyit.foundation.employee.domain.Role
 import org.springframework.stereotype.Repository
 
 /**

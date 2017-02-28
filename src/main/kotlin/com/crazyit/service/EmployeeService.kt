@@ -1,6 +1,7 @@
-package com.crazyit.foundation.service
+package com.crazyit.service
 
-import com.crazyit.foundation.entity.Employee
+import com.crazyit.foundation.AppService
+import com.crazyit.foundation.employee.domain.Employee
 import org.springframework.http.ResponseEntity
 
 /**

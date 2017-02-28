@@ -1,4 +1,4 @@
-package com.crazyit.foundation.service
+package com.crazyit.foundation
 
 import com.crazyit.core.constant.Global
 import org.springframework.data.domain.PageRequest

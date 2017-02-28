@@ -1,16 +1,16 @@
-package com.crazyit.foundation.service.impl
+package com.crazyit.service.impl
 
 import com.crazyit.core.constant.enum.UserStatus
 import com.crazyit.core.exception.MismatchingDataException
 import com.crazyit.core.exception.RepeatDataException
-import com.crazyit.foundation.data.ClientUser
-import com.crazyit.foundation.entity.Role
-import com.crazyit.foundation.entity.Employee
-import com.crazyit.foundation.entity.EmployeeAuth
-import com.crazyit.foundation.repo.RoleRepo
-import com.crazyit.foundation.repo.EmployeeAuthRepo
-import com.crazyit.foundation.repo.EmployeeRepo
-import com.crazyit.foundation.service.EmployeeService
+import com.crazyit.core.client.ClientUser
+import com.crazyit.foundation.employee.domain.Role
+import com.crazyit.foundation.employee.domain.Employee
+import com.crazyit.foundation.employee.domain.EmployeeAuth
+import com.crazyit.foundation.employee.dao.RoleRepo
+import com.crazyit.foundation.employee.dao.EmployeeAuthRepo
+import com.crazyit.foundation.employee.dao.EmployeeRepo
+import com.crazyit.service.EmployeeService
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus

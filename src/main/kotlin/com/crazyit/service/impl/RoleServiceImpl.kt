@@ -1,7 +1,7 @@
-package com.crazyit.foundation.service.impl
+package com.crazyit.service.impl
 
-import com.crazyit.foundation.repo.RoleRepo
-import com.crazyit.foundation.service.RoleService
+import com.crazyit.foundation.employee.dao.RoleRepo
+import com.crazyit.service.RoleService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

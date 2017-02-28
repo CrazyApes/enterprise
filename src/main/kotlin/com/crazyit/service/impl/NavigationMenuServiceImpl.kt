@@ -1,8 +1,8 @@
-package com.crazyit.foundation.service.impl
+package com.crazyit.service.impl
 
-import com.crazyit.foundation.entity.NavigationMenu
-import com.crazyit.foundation.repo.NavigationMenuRepo
-import com.crazyit.foundation.service.NavigationMenuService
+import com.crazyit.foundation.manage.domain.NavigationMenu
+import com.crazyit.foundation.employee.dao.NavigationMenuRepo
+import com.crazyit.service.NavigationMenuService
 import com.google.gson.Gson
 import org.apache.commons.collections.CollectionUtils
 import org.springframework.beans.factory.annotation.Autowired

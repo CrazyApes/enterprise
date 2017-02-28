@@ -1,6 +1,7 @@
-package com.crazyit.foundation.repo
+package com.crazyit.foundation.employee.dao
 
-import com.crazyit.foundation.entity.NavigationMenu
+import com.crazyit.foundation.AppRepo
+import com.crazyit.foundation.manage.domain.NavigationMenu
 import org.springframework.stereotype.Repository
 
 /**
