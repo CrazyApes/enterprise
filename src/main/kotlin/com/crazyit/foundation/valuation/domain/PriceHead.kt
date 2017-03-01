@@ -1,6 +1,6 @@
 package com.crazyit.foundation.valuation.domain
 
-import com.crazyit.foundation.AppEntity
+import com.crazyit.foundation.app.domain.AppEntity
 
 /**
  * @author CrazyApeDX

@@ -1,7 +1,7 @@
-package com.crazyit.foundation.manage.domain
+package com.crazyit.foundation.menu.domain
 
 import com.crazyit.core.exception.InvalidDataException
-import com.crazyit.foundation.AppEntity
+import com.crazyit.foundation.app.domain.AppEntity
 import java.util.*
 import javax.persistence.*
 
@@ -32,13 +32,13 @@ class NavigationMenu(
 
 	@Column(length = 3, nullable = false)
 	var sortId: Int = 1
-	set(value) {
-		if (value < 1 || value > 999) {
-			throw InvalidDataException(
-				message = "Navigation(sortId = $value)不符合规则 --> sortId 的值位于 1~999 之间",
-				notice = "您输入了一个错误的排序号（排序号为1~999之间的正整数）")
-		} else {
-			this.sortId = value
+		set(value) {
+			if (value < 1 || value > 999) {
+				throw InvalidDataException(
+					message = "Navigation(sortId = $value)不符合规则 --> sortId 的值位于 1~999 之间",
+					notice = "您输入了一个错误的排序号（排序号为1~999之间的正整数）")
+			} else {
+				this.sortId = value
+			}
 		}
-	}
 }

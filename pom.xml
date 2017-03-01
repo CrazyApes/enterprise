@@ -22,7 +22,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<kotlin.version>1.0.6</kotlin.version>
-        <swagger2.version>2.5.0</swagger2.version>
+        <swagger2.version>2.2.2</swagger2.version>
+		<swagger-models.version>1.5.4</swagger-models.version>
         <druid.version>1.0.27</druid.version>
 		<commons-lang3.version>3.4</commons-lang3.version>
 	</properties>
@@ -114,7 +115,14 @@
             <version>${swagger2.version}</version>
         </dependency>
 
-        <!-- JSON解析: GSON -->
+		<!-- Swagger2.2.2需要依赖swagger-models -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-models</artifactId>
+			<version>${swagger-models.version}</version>
+		</dependency>
+
+		<!-- JSON解析: GSON -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>

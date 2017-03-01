@@ -1,6 +1,6 @@
 package com.crazyit.core.token
 
-import com.crazyit.core.constant.enum.UserStatus
+import com.crazyit.core.constant.enum.EmployeeStatus
 import java.util.*
 
 /**
@@ -19,7 +19,7 @@ data class TokenPayload(
 	var roleId: Long,
 
 	// 用户状态
-	var status: UserStatus,
+	var status: EmployeeStatus,
 
 	// 过期时间（默认为1天后）
 	var expired: () -> Long = {

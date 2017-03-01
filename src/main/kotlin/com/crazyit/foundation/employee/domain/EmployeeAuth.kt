@@ -1,6 +1,6 @@
 package com.crazyit.foundation.employee.domain
 
-import com.crazyit.foundation.AppEntity
+import com.crazyit.foundation.app.domain.AppEntity
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Table
@@ -10,14 +10,14 @@ import javax.persistence.Table
  * Created on 2017/2/22.
  */
 @Entity
-@Table(name = "USER_AUTH")
+@Table(name = "EMPLOYEE_AUTH")
 open class EmployeeAuth(
 
 	@Column(nullable = false, updatable = false, unique = true)
-	var userId: Long,
+	var employeeId: Long,
 
 	// 用户登录名
-	@Column(length = 30, nullable = false, updatable = false, unique = true)
+	@Column(length = 20, nullable = false, updatable = false, unique = true)
 	var username: String,
 
 	// 密码，以MD5加密的方式存储在数据库

@@ -1,6 +1,6 @@
 package com.crazyit.core.token
 
-import com.crazyit.core.constant.Security
+import com.crazyit.core.util.Security
 import com.google.gson.Gson
 
 /**

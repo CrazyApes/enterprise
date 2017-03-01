@@ -1,4 +1,4 @@
-package com.crazyit.foundation
+package com.crazyit.foundation.app.provider
 
 import com.crazyit.core.constant.Global
 import org.springframework.data.domain.PageRequest
@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort
  * @author CrazyApeDX
  * Created on 2017/2/22.
  */
-interface AppService {
+interface AppProvider {
 
 	fun initPage(page: Int, size: Int): Pageable {
 		val usablePage: Int

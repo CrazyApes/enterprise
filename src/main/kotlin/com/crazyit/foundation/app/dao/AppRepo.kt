@@ -1,6 +1,6 @@
-package com.crazyit.foundation
+package com.crazyit.foundation.app.dao
 
-import com.crazyit.foundation.AppEntity
+import com.crazyit.foundation.app.domain.AppEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.data.repository.NoRepositoryBean

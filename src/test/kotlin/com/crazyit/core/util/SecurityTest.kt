@@ -1,7 +1,7 @@
-package com.crazyit.core.constant.security
+package com.crazyit.core.util
 
 import com.crazyit.EnterpriseApplication
-import com.crazyit.core.constant.Security
+import com.crazyit.core.util.Security
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.boot.test.context.SpringBootTest

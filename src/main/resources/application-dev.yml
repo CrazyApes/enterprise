@@ -30,7 +30,7 @@ spring:
     filter-pattern: /*
     filter-exclusions: /druid/*,*.html,*.js,*.css,*.gif,*.jpg,*.jpeg,*.png,*.ico
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
       naming:
@@ -39,6 +39,6 @@ spring:
 swagger2:
   config:
     title: Http/Https Interface Description
-    author: Author --> CrazyApeDX
+    author: Author > CrazyApeDX
     version: 0.0.1-SNAPSHOT
     api-locations: com.crazyit.web.controller
