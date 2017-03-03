@@ -17,35 +17,33 @@ data class LoginEmployee(
 	var roleTitle: String,
 	var name: String,
 	var headImageUri: String,
-	var sex: () -> String,
+	var sex: String,
 	var birthday: String,
-	var status: () -> String
+	var status: String
 ) {
 	companion object {
 
 		val dateFormat: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 
 		fun init(employee: Employee): LoginEmployee {
+			val sex = when (employee.sex) {
+				Sex.MALE -> "男"
+				Sex.FEMALE -> "女"
+				else -> "保密"
+			}
+			val status = when (employee.status) {
+				EmployeeStatus.ACTIVE -> "在职"
+				else -> "离职"
+			}
 			return LoginEmployee(
 				token = this.createToken(employee),
 				id = employee.id,
 				roleTitle = employee.role.title,
 				name = employee.name,
 				headImageUri = employee.headImageUri,
-				sex = {
-					when(employee.sex) {
-						Sex.MALE -> "男"
-						Sex.FEMALE -> "女"
-						else -> "保密"
-					}
-				},
+				sex = sex,
 				birthday = dateFormat.format(employee.birthday),
-				status = {
-					when (employee.status) {
-						EmployeeStatus.ACTIVE -> "在职"
-						else -> "离职"
-					}
-				}
+				status = status
 			)
 
 		}

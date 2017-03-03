@@ -18,4 +18,10 @@ object Global {
 	val DEFAULT_PAGEABLE_PAGE: Int = 0
 
 	val DEFAULT_PAGEABLE_SIZE: Int = 10
+
+	val DEFAULT_STANDARD_HEIGHT: Int = 0
+
+	val DEFAULT_STANDARD_WIDTH: Int = 0
+
+	val DEFAULT_STANDARD_DEPTH: Int = 0
 }

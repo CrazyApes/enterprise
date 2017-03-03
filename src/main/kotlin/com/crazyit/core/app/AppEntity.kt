@@ -1,4 +1,4 @@
-package com.crazyit.foundation.app.domain
+package com.crazyit.core.app
 
 import javax.persistence.*
 

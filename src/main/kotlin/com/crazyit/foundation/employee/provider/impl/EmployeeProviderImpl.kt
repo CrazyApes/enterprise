@@ -9,9 +9,11 @@ import com.crazyit.foundation.employee.dao.EmployeeRepo
 import com.crazyit.foundation.employee.domain.Employee
 import com.crazyit.foundation.employee.domain.EmployeeAuth
 import com.crazyit.foundation.employee.provider.EmployeePorvider
+import com.crazyit.foundation.employee.query.EmployeeQuery
 import com.crazyit.foundation.role.dao.RoleRepo
 import com.crazyit.foundation.role.domain.Role
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -112,6 +114,17 @@ open class EmployeeProviderImpl(
 	 */
 	override fun load(id: Long): Employee? {
 		return this.employeeRepo.findOne(id)
+	}
+
+	/**
+	 * 动态条件查询员工数据并分页的方法
+	 * @param query 动态查询条件对象，封装员工实体模型动态查询的所有条件
+	 * @param page 当前页码
+	 * @param size 每页数据量
+	 * @return 指定查询条件下的员工分页对象
+	 */
+	override fun loadAll(query: EmployeeQuery, page: Int, size: Int): Page<Employee> {
+		return this.employeeRepo.findAll(query.getCondition(), this.initPage(page, size))
 	}
 
 	/**

@@ -3,7 +3,7 @@ package com.crazyit.foundation.employee.domain
 import com.crazyit.core.constant.Global
 import com.crazyit.core.constant.enum.Sex
 import com.crazyit.core.constant.enum.EmployeeStatus
-import com.crazyit.foundation.app.domain.AppEntity
+import com.crazyit.core.app.AppEntity
 import com.crazyit.foundation.role.domain.Role
 import org.springframework.format.annotation.DateTimeFormat
 import java.util.*

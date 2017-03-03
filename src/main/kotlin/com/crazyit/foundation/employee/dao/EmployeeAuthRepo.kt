@@ -1,6 +1,6 @@
 package com.crazyit.foundation.employee.dao
 
-import com.crazyit.foundation.app.dao.AppRepo
+import com.crazyit.core.app.AppRepo
 import com.crazyit.foundation.employee.domain.EmployeeAuth
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
