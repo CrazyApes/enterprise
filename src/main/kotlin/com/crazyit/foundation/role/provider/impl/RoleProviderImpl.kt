@@ -8,7 +8,9 @@ import com.crazyit.foundation.employee.dao.EmployeeRepo
 import com.crazyit.foundation.role.dao.RoleRepo
 import com.crazyit.foundation.role.domain.Role
 import com.crazyit.foundation.role.provider.RoleProvider
+import com.crazyit.foundation.role.query.RoleQuery
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -78,8 +80,12 @@ open class RoleProviderImpl(
 	 * @param id 客户端键入的id
 	 * @return 指定id的角色实体模型数据
 	 */
-	override fun loadOne(id: Long): Role {
+	override fun load(id: Long): Role? {
 		return this.roleRepo.findOne(id)
+	}
+
+	override fun loadPage(query: RoleQuery, page: Int, size: Int): Page<Role> {
+		return this.roleRepo.findAll(query.getCondition(), this.initPage(page, size))
 	}
 
 	/**

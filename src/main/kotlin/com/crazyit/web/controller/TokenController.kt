@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController
  * @author CrazyApeDX
  * Created on 2017/3/1.
  */
-@Api(value = "Session API", description = "登录（授权）操作接口")
+@Api(value = "Token API", description = "登录（授权）相关API")
 @RestController
-@RequestMapping(value = "/service/session", produces = arrayOf("application/json;charset=utf-8"))
-open class SessionController(
+@RequestMapping(value = "/tokens", produces = arrayOf("application/json;charset=utf-8"))
+open class TokenController(
 	@Autowired var employeeService: EmployeeService
 ) {
 

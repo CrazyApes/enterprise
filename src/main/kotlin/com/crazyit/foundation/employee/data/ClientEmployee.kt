@@ -1,6 +1,5 @@
 package com.crazyit.foundation.employee.data
 
-import com.crazyit.core.constant.enum.Sex
 import com.crazyit.foundation.employee.domain.Employee
 import com.crazyit.foundation.employee.domain.EmployeeAuth
 import java.text.SimpleDateFormat
@@ -10,6 +9,7 @@ import java.text.SimpleDateFormat
  * Created on 2017/3/1.
  */
 data class ClientEmployee(
+	var id: Long,
 	var username: String,
 	var name: String,
     var roleTitle: String,
@@ -25,6 +25,7 @@ data class ClientEmployee(
 
 		fun init(employee: Employee, auth: EmployeeAuth): ClientEmployee {
 			return ClientEmployee(
+				id = employee.id,
 				username = auth.username,
 				name = employee.name,
 				roleTitle = employee.role.title,

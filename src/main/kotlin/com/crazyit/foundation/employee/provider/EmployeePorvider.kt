@@ -20,7 +20,7 @@ interface EmployeePorvider: AppProvider {
 
 	fun load(id: Long): Employee?
 
-	fun loadAll(query: EmployeeQuery, page: Int, size: Int): Page<Employee>
+	fun loadPage(query: EmployeeQuery, page: Int, size: Int): Page<Employee>
 
 	fun existsByUsername(username: String): Boolean
 

@@ -1,5 +1,8 @@
 package com.crazyit.service.employee
 
+import com.crazyit.core.constant.enum.EmployeeStatus
+import com.crazyit.core.constant.enum.OrderType
+import com.crazyit.core.constant.enum.Sex
 import org.springframework.http.ResponseEntity
 
 /**
@@ -12,8 +15,12 @@ interface EmployeeService {
 
 	fun register(username: String, password: String, name: String, roleId: Long): ResponseEntity<String>
 
+	fun remove(id: Long): ResponseEntity<String>
+
 	fun load(id: Long): ResponseEntity<String>
 
-	fun remove(id: Long): ResponseEntity<String>
+	fun loadPage(keywords: String?, orderType: OrderType?,
+	             orderProperty: String?, roleId: Long?, sex: Sex?,
+	             status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<String>
 
 }

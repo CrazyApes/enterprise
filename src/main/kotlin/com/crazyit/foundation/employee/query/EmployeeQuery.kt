@@ -15,37 +15,59 @@ import javax.persistence.criteria.*
  * Created on 2017/3/3.
  */
 open class EmployeeQuery(
-	var role: Role?,
-	var sex: Sex?,
-	var status: EmployeeStatus?
+	var role: Role? = null,
+	var sex: Sex? = null,
+	var status: EmployeeStatus? = null
 ) : AppQuery<Employee>() {
+
+	constructor(keywords: String?, orderType: OrderType?,
+	            orderProperty: String?, role: Role?, sex: Sex?,
+	            status: EmployeeStatus?) : this() {
+		if (null != keywords && "" != keywords) {
+			this.keywords = keywords
+		}
+		if (null != orderType) {
+			this.orderType = orderType
+		}
+		if (null != orderProperty && "" != orderProperty) {
+			this.orderProperty = orderProperty
+		}
+		if (null != role) {
+			this.role = role
+		}
+		if (null != sex) {
+			this.sex = sex
+		}
+		if (null != status) {
+			this.status = status
+		}
+	}
 
 	override fun getCondition(): Specification<Employee> {
 		return Specification { root, query, builder ->
 			if (null != keywords) {
-				val express: Path<String> = root!!.get("name")
-				query!!.where(builder.like(express, "%$keywords%"))
+				val path: Path<String> = root.get("name")
+				query.where(builder.like(path, "%$keywords%"))
 			}
 			if (null != role) {
-				val express: Path<Role> = root!!.get("role")
-				query!!.where(builder!!.equal(express, role))
+				val path: Path<Role> = root.get("role")
+				query.where(builder.equal(path, role))
 			}
 			if (null != sex) {
-				val expression: Path<Sex> = root!!.get("sex")
-				query!!.where(builder!!.equal(expression, sex))
+				val path: Path<Sex> = root.get("sex")
+				query.where(builder.equal(path, sex))
 			}
 			if (null == status) {
-				val expression: Path<EmployeeStatus> = root!!.get("status")
-				query!!.where(builder!!.equal(expression, status))
+				val path: Path<EmployeeStatus> = root.get("status")
+				query.where(builder.equal(path, status))
 			}
 			val property: Path<Any> = root.get(orderProperty)
 			when(orderType) {
-				OrderType.ASC -> query!!.orderBy(builder!!.asc(property))
-				OrderType.DESC -> query!!.orderBy(builder!!.desc(property))
+				OrderType.ASC -> query.orderBy(builder.asc(property))
+				OrderType.DESC -> query.orderBy(builder.desc(property))
 				else -> {}
 			}
-			query!!.restriction
+			query.restriction
 		}
 	}
-
 }

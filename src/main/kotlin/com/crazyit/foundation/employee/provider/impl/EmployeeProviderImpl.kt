@@ -123,7 +123,7 @@ open class EmployeeProviderImpl(
 	 * @param size 每页数据量
 	 * @return 指定查询条件下的员工分页对象
 	 */
-	override fun loadAll(query: EmployeeQuery, page: Int, size: Int): Page<Employee> {
+	override fun loadPage(query: EmployeeQuery, page: Int, size: Int): Page<Employee> {
 		return this.employeeRepo.findAll(query.getCondition(), this.initPage(page, size))
 	}
 
