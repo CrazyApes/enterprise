@@ -15,7 +15,6 @@ import com.crazyit.service.employee.EmployeeService
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
-import org.springframework.data.jpa.domain.Specification
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -54,13 +53,30 @@ open class EmployeeServiceImpl(
 	}
 
 	override fun register(username: String, password: String, name: String, roleId: Long): ResponseEntity<String> {
-		this.employeePorvider.create(
-			username = username,
-			password = password,
-			name = name,
-			roleId = roleId
-		)
-		return ResponseEntity.status(HttpStatus.CREATED).body(null)
+		if (!Employee.validateUsernamePattern(username)) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+				.body("您填写的用户名格式错误（格式为：位数为10~20位，必须包含大写字母，此外还可以输入小写字母和数字）")
+		} else if (!Employee.validatePasswordPattern(password)) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+				.body("您填写的密码格式错误（格式为：位数为8~16位，必须包含字母和数字，此外还可以输入~、#、_、.）")
+		} else if (!Employee.validateNamePattern(name)) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+				.body("您填写的姓名格式错误（格式为：位数为2~5位，只能输入中文）")
+		} else if (0L == roleId) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+				.body("请选择员工角色")
+		} else if (this.employeePorvider.existsByUsername(username)) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+				.body("用户名 $username 已经被注册，请更换用户名后重试")
+		} else {
+			this.employeePorvider.create(
+				username = username,
+				password = password,
+				name = name,
+				roleId = roleId
+			)
+			return ResponseEntity.status(HttpStatus.CREATED).body(null)
+		}
 	}
 
 	override fun remove(id: Long): ResponseEntity<String> {

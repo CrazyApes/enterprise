@@ -1,6 +1,7 @@
 package com.crazyit.service.role.impl
 
 import com.crazyit.core.constant.enum.OrderType
+import com.crazyit.foundation.role.domain.Role
 import com.crazyit.foundation.role.provider.RoleProvider
 import com.crazyit.foundation.role.query.RoleQuery
 import com.crazyit.service.role.RoleService
@@ -23,8 +24,13 @@ open class RoleServiceImpl(
 ) : RoleService {
 
 	override fun create(title: String): ResponseEntity<String> {
-		this.roleProvider.create(title)
-		return ResponseEntity.status(HttpStatus.CREATED).body(null)
+		if (!Role.validateTitlePattern(title)) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+				.body("您填写的角色标题格式错误（格式为：位数为4~10位，只能输入中文）")
+		} else {
+			this.roleProvider.create(title)
+			return ResponseEntity.status(HttpStatus.CREATED).body(null)
+		}
 	}
 
 	override fun remove(id: Long): ResponseEntity<String> {

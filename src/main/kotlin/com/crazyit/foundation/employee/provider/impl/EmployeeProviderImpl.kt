@@ -32,38 +32,54 @@ open class EmployeeProviderImpl(
 	/**
 	 * 新建用户的方法，也是快速注册用户的方法
 	 * @param username 新用户的登录用户名
-	 * @param password 新用户的登录密码（未加密）
+	 * @param password 新用户的登录密码（已加密）
 	 * @param name 新用户的真实姓名
 	 * @param roleId 新用户的角色id
 	 * @return 注册后的新用户实体模型对象
 	 * @throws InvalidDataException 在以下几种情况下抛出
-	 *      ① 客户端键入的用户名不符合格式要求（位数为10~20位，必须包含大写字母，此外还可以输入小写字母和数字）
-	 *      ② 客户端键入的密码不符合格式要求（位数为8~16位，必须包含字母和数字，此外还可以输入~、#、_、.）
-	 *      ③ 客户端键入的姓名不符合格式要求（位数为2~5位，只能输入中文）
+	 *      ① 用户名未填写
+	 *      ② 用户名长度超过20位
+	 *      ③ 密码未填写
+	 *      ④ 密码长度超过36位
+	 *      ⑤ 姓名未填写
+	 *      ⑥ 姓名长度超过5位
+	 *      ⑦ 未选择角色（roleId = 0L）
 	 * @throws RepeatDataException 客户端键入的用户名已经被注册时抛出
 	 * @throws MismatchingDataException 指定roleId的角色信息在数据库中不存在时抛出
 	 */
 	override fun create(username: String, password: String, name: String, roleId: Long): Employee {
-		if (!Employee.validateUsernamePattern(username)) {
+		if ("" == username) {
 			throw InvalidDataException(
-				message = "EmployeeAuth(username = $username)格式不匹配",
-				notice = "您填写的用户名格式错误（格式为：位数为10~20位，必须包含大写字母，此外还可以输入小写字母和数字）"
-			)
-		} else if (!Employee.validatePasswordPattern(password)) {
+				message = "EmployeeAuth(username = $username)用户名未填写",
+				notice = "请填写您的用户名")
+		} else if (username.length > 20) {
 			throw InvalidDataException(
-				message = "EmployeeAuth(password = $password)格式不匹配",
-				notice = "您填写的密码格式错误（格式为：位数为8~16位，必须包含字母和数字，此外还可以输入~、#、_、.）"
-			)
-		} else if (!Employee.validateNamePattern(name)) {
+				message = "EmployeeAuth(username = $username)用户名长度超过20位",
+				notice = "用户名不能超过20位")
+		} else if ("" == password) {
 			throw InvalidDataException(
-				message = "Employee(name = $name)格式不匹配",
-				notice = "您填写的姓名格式错误（格式为：位数为2~5位，只能输入中文）"
-			)
+				message = "EmployeeAuth(password = $password)密码未填写",
+				notice = "请填写您的密码")
+		} else if (password.length > 36) {
+			throw InvalidDataException(
+				message = "EmployeeAuth(password = $password)密码长度超过36位",
+				notice = "密码不能超过36位")
+		} else if ("" == name) {
+			throw InvalidDataException(
+				message = "Employee(name = $name)姓名未填写",
+				notice = "请填写您的姓名")
+		} else if (name.length > 5) {
+			throw InvalidDataException(
+				message = "Employee(name = $name)姓名长度超过5位",
+				notice = "姓名不能超过5位")
+		} else if (0L == roleId) {
+			throw InvalidDataException(
+				message = "Employee(role = role(id = $roleId))未选择角色",
+				notice = "请选择您的角色")
 		} else if (this.existsByUsername(username)) {
 			throw RepeatDataException(
 				message = "EmployeeAuth(username = $username)数据已经存在",
-				notice = "用户名 $username 已经被注册，请更换用户名后重试"
-			)
+				notice = "用户名 $username 已经被注册，请更换您的用户名")
 		} else {
 			val role: Role? = this.roleRepo.findOne(roleId)
 			if (null == role) {
@@ -88,23 +104,41 @@ open class EmployeeProviderImpl(
 
 	/**
 	 * 删除指定id的员工的方法
-	 * @param id
-	 * @throws MismatchingDataException 指定id的员工数据不存在时抛出
+	 * @param id 指定员工的id
 	 */
 	override fun remove(id: Long) {
-		if (this.employeeRepo.countById(id) == 0L) {
-			throw MismatchingDataException(
-				message = "Employee(id = $id)数据不存在",
-				notice = "指定删除的数据并不存在，请确认"
-			)
-		} else {
-			this.employeeRepo.delete(id)
-			this.employeeAuthRepo.deleteByEmployeeId(id)
-		}
+		this.employeeRepo.delete(id)
+		this.employeeAuthRepo.deleteByEmployeeId(id)
 	}
 
-	override fun modify(employee: Employee): Employee {
-		throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+	override fun modify(id: Long, name: String?, roleId: Long?, password: String?): Employee {
+		val employee = this.employeeRepo.findOne(id) ?: throw MismatchingDataException(
+			message = "Employee(id = $id)数据不存在",
+			notice = "加载员工基础信息失败，请稍后重试或联系管理员")
+		if (null != name && "" != name) {
+			if (name.length > 5) throw InvalidDataException(
+					message = "Employee(name = $name)姓名长度超过5位",
+					notice = "姓名不能超过5位")
+			else employee.name = name
+		}
+		if (null !== roleId && 0L != roleId) {
+			val role = this.roleRepo.findOne(roleId) ?: throw MismatchingDataException(
+				message = "Role(id = $roleId)数据不存在",
+				notice = "加载角色信息失败，请稍后重试或联系管理员"
+			)
+			employee.role = role
+		}
+		if (null != password && "" != password) {
+			val auth = this.employeeAuthRepo.findByEmployeeId(employee.id) ?: throw MismatchingDataException(
+				message = "EmployeeAuth(employeeId = ${employee.id})数据不存在",
+				notice = "加载员工安全信息失败，请稍后重试或联系管理员")
+			if (password.length > 36) throw InvalidDataException(
+				message = "EmployeeAuth(password = $password)密码长度超过36位",
+				notice = "密码不能超过36位")
+			else auth.password = password
+			this.employeeAuthRepo.save(auth)
+		}
+		return this.employeeRepo.save(employee)
 	}
 
 	/**

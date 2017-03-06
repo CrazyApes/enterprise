@@ -16,7 +16,7 @@ interface EmployeePorvider: AppProvider {
 
 	fun remove(id: Long)
 
-	fun modify(employee: Employee): Employee
+	fun modify(id: Long, name: String?, roleId: Long?, password: String?): Employee
 
 	fun load(id: Long): Employee?
 

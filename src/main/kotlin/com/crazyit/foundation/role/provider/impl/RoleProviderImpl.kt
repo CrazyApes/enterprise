@@ -33,10 +33,10 @@ open class RoleProviderImpl(
 	 * @throws RepeatDataException 客户端输入的标题在数据库中已经存在时抛出
 	 */
 	override fun create(title: String): Role {
-		if (!Role.validateTitlePattern(title)) {
+		if (title.length > 10) {
 			throw InvalidDataException(
-				message = "Role(title = $title) 格式不匹配",
-				notice = "您填写的标题格式错误（格式为：位数为4~10位，只能输入中文）"
+				message = "Role(title = $title) 长度超过10位",
+				notice = "角色标题不能超过10位"
 			)
 		} else if (this.existsByTitle(title)) {
 			throw RepeatDataException(

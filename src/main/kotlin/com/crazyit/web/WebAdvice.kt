@@ -1,6 +1,6 @@
 package com.crazyit.web
 
-import com.crazyit.core.exception.AppException
+import com.crazyit.core.app.AppException
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus

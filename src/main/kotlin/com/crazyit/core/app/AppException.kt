@@ -1,4 +1,4 @@
-package com.crazyit.core.exception
+package com.crazyit.core.app
 
 /**
  * @author CrazyApeDX

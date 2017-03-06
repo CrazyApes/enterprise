@@ -1,5 +1,7 @@
 package com.crazyit.core.exception
 
+import com.crazyit.core.app.AppException
+
 /**
  * @author CrazyApeDX
  * Created on 2017/2/23.
