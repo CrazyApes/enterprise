@@ -6,11 +6,13 @@ import javax.persistence.Entity
 import javax.persistence.Table
 
 /**
- * Created by zhang on 2017/3/5.
+ * Created by zhang on 2017/3/10.
+ * 门套model
  */
+
 @Entity
-@Table(name = "price_node_content")
-open class PriceNodeContent(
+@Table(name = "whole_package_door")
+open class Sleeve(
         //所属模板节点Id
         @Column(nullable = false)
         var templateId :Long,
@@ -23,13 +25,13 @@ open class PriceNodeContent(
         //基础尺寸
         @Column(length = 50)
         var baseSize: String,
-        //增量计算单位
+        //增量计价格方式
         @Column(length = 10)
-        var IncrementUnit: String,
+        var IncrementType: String,
         //门扇增量价格
-        @Column(nullable = true)
-        var doorLeafIncrementPrice: Long,
-        //门套增量价格
-        @Column(nullable = true)
-        var doorCoverIncrementPrice: Long
+        @Column(nullable = false)
+        var IncrementPrice: Long,
+        //每增加一种颜色多少钱
+        @Column(nullable = false)
+        var PricePerColor:Long
 ) : AppEntity()

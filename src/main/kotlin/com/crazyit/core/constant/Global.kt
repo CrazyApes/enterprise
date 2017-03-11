@@ -24,4 +24,15 @@ object Global {
 	val DEFAULT_STANDARD_WIDTH: Int = 0
 
 	val DEFAULT_STANDARD_DEPTH: Int = 0
+
+	//模板节点类型
+	val NODE_TYPE_SERIES:Int = 0
+
+	val NODE_TYPE_WHOLE_PACKAGE_DOOR:Int = 1
+
+	val NODE_TYPE_SLEEVE:Int = 2
+	//单面套双面套
+	val SINGLE_SLEEVE:Int = 0
+	val DOUBLE_SLEEVE:Int = 1
+
 }

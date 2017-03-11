@@ -17,7 +17,7 @@ open class WholePackageDoor(
         var templateId :Long,
         //客户Id
         @Column(nullable = false)
-        var cusomerId: Long,
+        var customerId: Long,
         //基础价格
         @Column(nullable = false)
         var basePricae: Long,

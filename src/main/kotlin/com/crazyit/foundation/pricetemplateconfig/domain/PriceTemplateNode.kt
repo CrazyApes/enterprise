@@ -19,15 +19,15 @@ import javax.persistence.Table
 @Table(name = "price_template_node")
 open class PriceTemplateNode(
         //价格配置模板的父id
-        @Column(nullable = false)
-        var parentId: Long,
+        @Column(nullable = true)
+        var parentId: Long?,
         //客户ID
         @Column(nullable = false)
-        var cusomerId: Long,
+        var customerId: Long,
         // 创建日期
         @Column(nullable = false)
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        var createDate: Date = Global.DEFAULT_START_TIME,
+        var createDate: Date = Date(),
         //当前层级
         @Column(nullable = false)
         var currentLevlel :Int,
@@ -38,10 +38,9 @@ open class PriceTemplateNode(
         @Column(length = 50, nullable = false)
         var title: String,
         //节点类型，产品种类，全套门，单面套，双面套，附加项
-        @Column(length = 10, nullable = false)
-        var kindCode: String,
-        @Column(length = 10, nullable = false)
-        var kindName: String
+        @Column(nullable = false)
+        var nodeType :Int
 
+) :AppEntity(){
 
-) :AppEntity()
+}

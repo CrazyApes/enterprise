@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional
 open class PriceTemplateNodeProviderImpl(
         @Autowired  val priceTemplateNodeRepo: PriceTemplateNodeRepo
 ) : PriceTemplateNodeProvider {
-    override fun create(title: String,cusomerId :Long,currentLevlel :Int,kindCode: String,kindName: String,parentId: Long): PriceTemplateNode {
+    override fun createOne(title: String,customerId :Long,currentLevlel :Int,nodeType: Int,parentId: Long?): PriceTemplateNode {
             return this.priceTemplateNodeRepo.save(PriceTemplateNode(title = title,
-                    kindCode = kindCode,kindName = kindName,parentId = parentId,currentLevlel = currentLevlel,cusomerId= cusomerId));
+                    nodeType = nodeType,parentId = parentId,currentLevlel = currentLevlel,customerId= customerId));
     }
 }

@@ -8,5 +8,5 @@ import com.crazyit.foundation.pricetemplateconfig.domain.PriceTemplateNode
  */
 
 interface PriceTemplateNodeProvider : AppProvider {
-    fun create(title: String,cusomerId :Long,currentLevlel :Int,kindCode: String,kindName: String,parentId: Long): PriceTemplateNode
+    fun createOne(title: String,customerId :Long,currentLevlel :Int,nodeType: Int,parentId: Long?): PriceTemplateNode
 }
