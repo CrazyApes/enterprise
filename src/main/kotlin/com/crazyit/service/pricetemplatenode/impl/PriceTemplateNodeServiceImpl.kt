@@ -1,7 +1,5 @@
 package com.crazyit.service.pricetemplatenode.impl
 
-import com.crazyit.foundation.employee.data.LoginEmployee
-import com.crazyit.foundation.pricetemplateconfig.domain.PriceTemplateNode
 import com.crazyit.foundation.pricetemplateconfig.provider.PriceTemplateNodeProvider
 import com.crazyit.service.pricetemplatenode.PriceTemplateNodeService
 import com.google.gson.Gson

@@ -19,6 +19,7 @@ open class WebAdvice(
 
 	@ExceptionHandler
 	fun exceptionHandler(ex: Throwable): ResponseEntity<String> {
+		ex.printStackTrace()
 		if (ex is AppException) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(ex.notice))
 		} else {

@@ -1,6 +1,5 @@
 package com.crazyit.service.pricetemplatenode
 
-import com.crazyit.foundation.pricetemplateconfig.domain.PriceTemplateNode
 import org.springframework.http.ResponseEntity
 
 /**
