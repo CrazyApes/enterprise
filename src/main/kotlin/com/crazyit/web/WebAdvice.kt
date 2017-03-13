@@ -19,7 +19,7 @@ open class WebAdvice(
 
 	@ExceptionHandler
 	fun exceptionHandler(ex: Throwable): ResponseEntity<String> {
-		// 打印堆栈信息
+		// 打印错误堆栈信息
 		ex.printStackTrace()
 		if (ex is AppException) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson(ex.notice))
