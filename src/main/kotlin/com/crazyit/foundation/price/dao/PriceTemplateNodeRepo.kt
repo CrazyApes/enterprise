@@ -1,7 +1,7 @@
-package com.crazyit.foundation.pricetemplateconfig.dao
+package com.crazyit.foundation.price.dao
 
 import com.crazyit.core.app.AppRepo
-import com.crazyit.foundation.pricetemplateconfig.domain.PriceTemplateNode
+import com.crazyit.foundation.price.domain.PriceTemplateNode
 import org.springframework.stereotype.Repository
 
 /**

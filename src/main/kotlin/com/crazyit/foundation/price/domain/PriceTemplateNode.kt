@@ -1,4 +1,4 @@
-package com.crazyit.foundation.pricetemplateconfig.domain
+package com.crazyit.foundation.price.domain
 
 
 import com.crazyit.core.app.AppEntity
@@ -30,7 +30,7 @@ open class PriceTemplateNode(
         var createDate: Date = Date(),
         //当前层级
         @Column(nullable = false)
-        var currentLevlel :Int,
+        var currentLevel :Int,
         // 用户状态： ACTIVE --> 启用； INACTIVE --> 注销
         @Column(length = 10, nullable = false)
         var status: PriceTemplateNodeStatus = PriceTemplateNodeStatus.ACTIVE,

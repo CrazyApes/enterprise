@@ -1,8 +1,8 @@
 package com.crazyit.core.util
 
 import com.crazyit.EnterpriseApplication
-import com.crazyit.foundation.pricetemplateconfig.provider.PriceTemplateNodeProvider
-import com.crazyit.service.pricetemplatenode.PriceTemplateNodeService
+import com.crazyit.foundation.price.provider.PriceTemplateNodeProvider
+import com.crazyit.foundation.price.service.PriceTemplateService
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,14 +22,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
     @Autowired lateinit
     var priceTemplateNodeProvoder: PriceTemplateNodeProvider
     @Autowired lateinit
-    var priceTemplateNodeService: PriceTemplateNodeService
+    var priceTemplateService: PriceTemplateService
     @Test
     fun testCreate(){
         priceTemplateNodeProvoder.createOne("节点一",2L,2,2,2)
     }
     @Test
     fun testCreateOne(){
-        priceTemplateNodeProvoder.createOne("节点一",2L,2,2,2)
+        priceTemplateService.createOne("节点一",2L,2,2,2)
     }
 
 }

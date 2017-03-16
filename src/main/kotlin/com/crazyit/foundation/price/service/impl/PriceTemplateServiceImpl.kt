@@ -1,7 +1,7 @@
-package com.crazyit.service.pricetemplatenode.impl
+package com.crazyit.foundation.price.service.impl
 
-import com.crazyit.foundation.pricetemplateconfig.provider.PriceTemplateNodeProvider
-import com.crazyit.service.pricetemplatenode.PriceTemplateNodeService
+import com.crazyit.foundation.price.provider.PriceTemplateNodeProvider
+import com.crazyit.foundation.price.service.PriceTemplateService
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -13,15 +13,15 @@ import org.springframework.transaction.annotation.Transactional
  * @author Zack
  *  Created  on 2017/3/10.
  */
-@Service
+@Service("priceTemplateService")
 @Transactional
-open class PriceTemplateNodeServiceImpl(
+open class PriceTemplateServiceImpl(
         @Autowired var gson: Gson,
         @Autowired var priceTemplateNodeProvider: PriceTemplateNodeProvider
-        ) : PriceTemplateNodeService {
-    override fun createOne(title: String, customerId: Long, currentLevlel: Int, nodeType: Int, parentId: Long?): ResponseEntity<String> {
+        ) : PriceTemplateService {
+    override fun createOne(title: String, customerId: Long, currentLevel: Int, nodeType: Int, parentId: Long?): ResponseEntity<String> {
         return ResponseEntity.status(HttpStatus.CREATED).body(gson.toJson(priceTemplateNodeProvider.createOne(title = title,
-                nodeType = nodeType,parentId = parentId,currentLevlel = currentLevlel,customerId= customerId)))
+                nodeType = nodeType,parentId = parentId,currentLevel = currentLevel,customerId= customerId)))
     }
 
 }

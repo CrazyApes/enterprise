@@ -1,4 +1,4 @@
-package com.crazyit.foundation.pricetemplateconfig.domain
+package com.crazyit.foundation.price.domain
 
 import com.crazyit.core.app.AppEntity
 import javax.persistence.Column
