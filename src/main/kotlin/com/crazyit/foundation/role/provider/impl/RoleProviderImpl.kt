@@ -1,5 +1,6 @@
 package com.crazyit.foundation.role.provider.impl
 
+import com.crazyit.core.app.AppProviderImpl
 import com.crazyit.core.exception.InvalidDataException
 import com.crazyit.core.exception.IsUsedDataException
 import com.crazyit.core.exception.MismatchingDataException
@@ -23,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional
 open class RoleProviderImpl(
 	@Autowired val roleRepo: RoleRepo,
     @Autowired val employeeRepo: EmployeeRepo
-) : RoleProvider {
+) : AppProviderImpl<Role>(roleRepo), RoleProvider {
 
 	/**
 	 * 新增角色的方法
@@ -71,7 +72,7 @@ open class RoleProviderImpl(
 	}
 
 
-	override fun modify(role: Role) {
+	override fun modify(entity: Role): Role {
 		throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
 	}
 

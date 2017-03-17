@@ -1,8 +1,8 @@
-package com.crazyit.foundation.price.controller
+package com.crazyit.external.web.controller
 
 
 import com.crazyit.foundation.price.domain.PriceTemplateNode
-import com.crazyit.foundation.price.service.PriceTemplateService
+import com.crazyit.external.service.price.PriceTemplateService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams

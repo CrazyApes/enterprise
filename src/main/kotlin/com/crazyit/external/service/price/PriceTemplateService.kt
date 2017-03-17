@@ -1,4 +1,4 @@
-package com.crazyit.foundation.price.service
+package com.crazyit.external.service.price
 
 import org.springframework.http.ResponseEntity
 

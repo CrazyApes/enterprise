@@ -27,13 +27,33 @@ open class Customer(
 
     // 客户传真
     @Column(length = 15, unique = true)
-    var fax: String?,
+    var fax: String? = null,
 
 	// 总消费额（单位：分）
 	@Column(nullable = false)
 	var totalConsume: Long = 0L,
 
     // 价目表头ID
-    var priceHeadId: Long
+    var priceHeadId: Long? = null
 
-) : AppEntity()
+) : AppEntity() {
+
+	companion object {
+
+		/**
+		 * 验证客户端输入的姓名是否符合格式的方法
+		 * 格式：位数为2~5位，只能输入中文
+		 */
+		fun validateNamePattern(name: String): Boolean {
+			return name.matches(Regex("^[\\u4e00-\\u9fa5]{2,5}$"))
+		}
+
+		/**
+		 * 验证客户端输入的手机号码是否符合格式的方法
+		 * 格式：以1开头的11位数字
+		 */
+		fun validateMobilePattern(mobile: String): Boolean {
+			return mobile.matches(Regex("^1[0-9]{10}$"))
+		}
+	}
+}

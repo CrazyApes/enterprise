@@ -1,5 +1,6 @@
 package com.crazyit.foundation.employee.provider.impl
 
+import com.crazyit.core.app.AppProviderImpl
 import com.crazyit.core.util.Security
 import com.crazyit.core.exception.InvalidDataException
 import com.crazyit.core.exception.MismatchingDataException
@@ -27,7 +28,7 @@ open class EmployeeProviderImpl(
 	@Autowired val employeeRepo: EmployeeRepo,
     @Autowired val employeeAuthRepo: EmployeeAuthRepo,
     @Autowired val roleRepo: RoleRepo
-) : EmployeeProvider {
+) : AppProviderImpl<Employee>(employeeRepo) ,EmployeeProvider {
 
 	/**
 	 * 新建用户的方法，也是快速注册用户的方法
