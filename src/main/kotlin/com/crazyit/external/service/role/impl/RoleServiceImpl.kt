@@ -1,10 +1,10 @@
-package com.crazyit.service.role.impl
+package com.crazyit.external.service.role.impl
 
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.foundation.role.domain.Role
 import com.crazyit.foundation.role.provider.RoleProvider
 import com.crazyit.foundation.role.query.RoleQuery
-import com.crazyit.service.role.RoleService
+import com.crazyit.external.service.role.RoleService
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus

@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page
  * @author CrazyApeDX
  * Created on 2017/2/28.
  */
-interface EmployeePorvider: AppProvider {
+interface EmployeeProvider : AppProvider {
 
 	fun create(username: String, password: String, name: String, roleId: Long): Employee
 

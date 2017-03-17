@@ -1,11 +1,11 @@
-package com.crazyit.web.controller
+package com.crazyit.external.web.controller
 
 import com.crazyit.core.constant.enum.EmployeeStatus
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.core.constant.enum.Sex
 import com.crazyit.foundation.employee.data.ClientEmployee
 import com.crazyit.foundation.employee.domain.Employee
-import com.crazyit.service.employee.EmployeeService
+import com.crazyit.external.service.employee.EmployeeService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams

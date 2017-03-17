@@ -1,4 +1,4 @@
-package com.crazyit.service.role
+package com.crazyit.external.service.role
 
 import com.crazyit.core.constant.enum.OrderType
 import org.springframework.http.ResponseEntity

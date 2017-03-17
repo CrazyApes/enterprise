@@ -1,4 +1,4 @@
-package com.crazyit.service.employee.impl
+package com.crazyit.external.service.employee.impl
 
 import com.crazyit.core.constant.enum.EmployeeStatus
 import com.crazyit.core.constant.enum.OrderType
@@ -7,11 +7,11 @@ import com.crazyit.core.util.Security
 import com.crazyit.foundation.employee.data.ClientEmployee
 import com.crazyit.foundation.employee.data.LoginEmployee
 import com.crazyit.foundation.employee.domain.Employee
-import com.crazyit.foundation.employee.provider.EmployeePorvider
+import com.crazyit.foundation.employee.provider.EmployeeProvider
 import com.crazyit.foundation.employee.query.EmployeeQuery
 import com.crazyit.foundation.role.domain.Role
 import com.crazyit.foundation.role.provider.RoleProvider
-import com.crazyit.service.employee.EmployeeService
+import com.crazyit.external.service.employee.EmployeeService
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -29,17 +29,17 @@ import org.springframework.transaction.annotation.Transactional
 open class EmployeeServiceImpl(
 	@Autowired var gson: Gson,
 	@Autowired var roleProvider: RoleProvider,
-	@Autowired var employeePorvider: EmployeePorvider
+	@Autowired var employeeProvider: EmployeeProvider
 ) : EmployeeService {
 
 	override fun login(username: String, password: String): ResponseEntity<String> {
-		val auth = this.employeePorvider.loadAuthByUsername(username)
+		val auth = this.employeeProvider.loadAuthByUsername(username)
 		if (null == auth) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(gson.toJson("该用户名未注册"))
 		} else if (auth.password != Security.encodeMD5(password)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(gson.toJson("您输入的密码不正确"))
 		} else {
-			val employee = this.employeePorvider.load(auth.employeeId)
+			val employee = this.employeeProvider.load(auth.employeeId)
 			if (null == employee) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson("加载账号信息失败，请稍后重试或联系管理员"))
 			} else {
@@ -65,11 +65,11 @@ open class EmployeeServiceImpl(
 		} else if (0L == roleId) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
 				.body("请选择员工角色")
-		} else if (this.employeePorvider.existsByUsername(username)) {
+		} else if (this.employeeProvider.existsByUsername(username)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
 				.body("用户名 $username 已经被注册，请更换用户名后重试")
 		} else {
-			this.employeePorvider.create(
+			this.employeeProvider.create(
 				username = username,
 				password = password,
 				name = name,
@@ -80,13 +80,13 @@ open class EmployeeServiceImpl(
 	}
 
 	override fun remove(id: Long): ResponseEntity<String> {
-		this.employeePorvider.remove(id)
+		this.employeeProvider.remove(id)
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null)
 	}
 
 	override fun load(id: Long): ResponseEntity<String> {
-		val employee = this.employeePorvider.load(id)
-		val employeeAuth = this.employeePorvider.loadAuthByEmployeeId(id)
+		val employee = this.employeeProvider.load(id)
+		val employeeAuth = this.employeeProvider.loadAuthByEmployeeId(id)
 		if (null == employee || null == employeeAuth) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson("很遗憾...我们没有这条数据"))
 		} else {
@@ -112,7 +112,7 @@ open class EmployeeServiceImpl(
 			keywords = keywords, orderType = orderType,
 			orderProperty = orderProperty, role = role, sex = sex,
 			status = status)
-		val employeePage: Page<Employee> = this.employeePorvider.loadPage(query = query, page = page, size = size)
+		val employeePage: Page<Employee> = this.employeeProvider.loadPage(query = query, page = page, size = size)
 		return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(employeePage))
 	}
 

@@ -8,7 +8,7 @@ import com.crazyit.foundation.employee.dao.EmployeeAuthRepo
 import com.crazyit.foundation.employee.dao.EmployeeRepo
 import com.crazyit.foundation.employee.domain.Employee
 import com.crazyit.foundation.employee.domain.EmployeeAuth
-import com.crazyit.foundation.employee.provider.EmployeePorvider
+import com.crazyit.foundation.employee.provider.EmployeeProvider
 import com.crazyit.foundation.employee.query.EmployeeQuery
 import com.crazyit.foundation.role.dao.RoleRepo
 import com.crazyit.foundation.role.domain.Role
@@ -27,7 +27,7 @@ open class EmployeeProviderImpl(
 	@Autowired val employeeRepo: EmployeeRepo,
     @Autowired val employeeAuthRepo: EmployeeAuthRepo,
     @Autowired val roleRepo: RoleRepo
-) : EmployeePorvider {
+) : EmployeeProvider {
 
 	/**
 	 * 新建用户的方法，也是快速注册用户的方法

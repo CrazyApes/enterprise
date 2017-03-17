@@ -1,4 +1,4 @@
-package com.crazyit.service.employee
+package com.crazyit.external.service.employee
 
 import com.crazyit.core.constant.enum.EmployeeStatus
 import com.crazyit.core.constant.enum.OrderType

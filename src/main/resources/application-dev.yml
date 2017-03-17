@@ -41,4 +41,4 @@ swagger2:
     title: Http/Https Interface Description
     author: Author > CrazyApeDX
     version: 0.0.1-SNAPSHOT
-    api-locations: com.crazyit.web.controller
+    api-locations: com.crazyit.external.web.controller

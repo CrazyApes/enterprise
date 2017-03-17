@@ -1,8 +1,8 @@
-package com.crazyit.web.controller
+package com.crazyit.external.web.controller
 
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.foundation.role.domain.Role
-import com.crazyit.service.role.RoleService
+import com.crazyit.external.service.role.RoleService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams
