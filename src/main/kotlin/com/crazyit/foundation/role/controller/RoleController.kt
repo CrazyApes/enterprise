@@ -1,8 +1,8 @@
-package com.crazyit.external.web.controller
+package com.crazyit.foundation.role.controller
 
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.foundation.role.domain.Role
-import com.crazyit.external.service.role.RoleService
+import com.crazyit.foundation.role.service.RoleService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams
@@ -37,7 +37,7 @@ open class RoleController(
 			value = "每页数据量，必须填写"))
 	@GetMapping
 	fun rolesGet(keywords: String?, orderType: OrderType?,
-	             orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
+				 orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
 		return this.roleService.loadPage(
 			keywords = keywords,
 			orderType = orderType,

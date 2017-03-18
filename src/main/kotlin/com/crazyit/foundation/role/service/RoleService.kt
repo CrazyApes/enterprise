@@ -1,4 +1,4 @@
-package com.crazyit.external.service.role
+package com.crazyit.foundation.role.service
 
 import com.crazyit.core.constant.enum.OrderType
 import org.springframework.http.ResponseEntity
@@ -16,5 +16,5 @@ interface RoleService {
 	fun load(id: Long): ResponseEntity<String>
 
 	fun loadPage(keywords: String?, orderType: OrderType?,
-	             orderProperty: String?, page: Int, size: Int): ResponseEntity<String>
+				 orderProperty: String?, page: Int, size: Int): ResponseEntity<String>
 }

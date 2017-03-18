@@ -1,7 +1,7 @@
-package com.crazyit.external.web.controller
+package com.crazyit.core.token.controller
 
 import com.crazyit.foundation.employee.data.LoginEmployee
-import com.crazyit.external.service.employee.EmployeeService
+import com.crazyit.foundation.employee.service.EmployeeService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams

@@ -1,4 +1,4 @@
-package com.crazyit.external.service.customer
+package com.crazyit.foundation.customer.service
 
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.foundation.customer.domain.Customer
@@ -15,5 +15,5 @@ interface CustomerService {
 	fun loadOne(id: Long): ResponseEntity<String>
 
 	fun loadPage(keywords: String?, orderType: OrderType?, orderProperty: String?,
-	             page: Int, size: Int): ResponseEntity<String>
+                 page: Int, size: Int): ResponseEntity<String>
 }

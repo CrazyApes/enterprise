@@ -2,7 +2,7 @@ package com.crazyit.core.util
 
 import com.crazyit.EnterpriseApplication
 import com.crazyit.foundation.price.provider.PriceTemplateNodeProvider
-import com.crazyit.external.service.price.PriceTemplateService
+import com.crazyit.foundation.price.service.PriceTemplateService
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired

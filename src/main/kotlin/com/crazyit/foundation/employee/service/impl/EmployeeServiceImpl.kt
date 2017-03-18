@@ -1,4 +1,4 @@
-package com.crazyit.external.service.employee.impl
+package com.crazyit.foundation.employee.service.impl
 
 import com.crazyit.core.constant.enum.EmployeeStatus
 import com.crazyit.core.constant.enum.OrderType
@@ -11,7 +11,7 @@ import com.crazyit.foundation.employee.provider.EmployeeProvider
 import com.crazyit.foundation.employee.query.EmployeeQuery
 import com.crazyit.foundation.role.domain.Role
 import com.crazyit.foundation.role.provider.RoleProvider
-import com.crazyit.external.service.employee.EmployeeService
+import com.crazyit.foundation.employee.service.EmployeeService
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -27,9 +27,9 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 open class EmployeeServiceImpl(
-	@Autowired var gson: Gson,
-	@Autowired var roleProvider: RoleProvider,
-	@Autowired var employeeProvider: EmployeeProvider
+		@Autowired var gson: Gson,
+		@Autowired var roleProvider: RoleProvider,
+		@Autowired var employeeProvider: EmployeeProvider
 ) : EmployeeService {
 
 	override fun login(username: String, password: String): ResponseEntity<String> {
@@ -100,8 +100,8 @@ open class EmployeeServiceImpl(
 	}
 
 	override fun loadPage(keywords: String?, orderType: OrderType?,
-	                      orderProperty: String?, roleId: Long?, sex: Sex?,
-	                      status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<String> {
+						  orderProperty: String?, roleId: Long?, sex: Sex?,
+						  status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<String> {
 		val role: Role?
 		if (null == roleId || roleId == 0L) {
 			role = null

@@ -1,7 +1,7 @@
-package com.crazyit.external.web.controller
+package com.crazyit.foundation.customer.controller
 
 import com.crazyit.core.constant.enum.OrderType
-import com.crazyit.external.service.customer.CustomerService
+import com.crazyit.foundation.customer.service.CustomerService
 import com.crazyit.foundation.customer.domain.Customer
 import com.crazyit.foundation.employee.domain.Employee
 import io.swagger.annotations.Api
@@ -47,7 +47,7 @@ open class CustomerController(
 			value = "每页数据量，必须填写"))
 	@GetMapping
 	fun customersGet(keywords: String?, orderType: OrderType?,
-	                 orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
+					 orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
 		return this.customerService.loadPage(keywords, orderType, orderProperty, page, size)
 	}
 

@@ -1,10 +1,10 @@
-package com.crazyit.external.service.role.impl
+package com.crazyit.foundation.role.service.impl
 
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.foundation.role.domain.Role
 import com.crazyit.foundation.role.provider.RoleProvider
 import com.crazyit.foundation.role.query.RoleQuery
-import com.crazyit.external.service.role.RoleService
+import com.crazyit.foundation.role.service.RoleService
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -19,8 +19,8 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 open class RoleServiceImpl(
-	@Autowired var gson: Gson,
-	@Autowired var roleProvider: RoleProvider
+		@Autowired var gson: Gson,
+		@Autowired var roleProvider: RoleProvider
 ) : RoleService {
 
 	override fun create(title: String): ResponseEntity<String> {
@@ -48,7 +48,7 @@ open class RoleServiceImpl(
 	}
 
 	override fun loadPage(keywords: String?, orderType: OrderType?,
-	                      orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
+						  orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
 		val rolePage = this.roleProvider.loadPage(
 			RoleQuery(
 				keywords = keywords,

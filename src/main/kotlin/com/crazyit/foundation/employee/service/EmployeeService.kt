@@ -1,4 +1,4 @@
-package com.crazyit.external.service.employee
+package com.crazyit.foundation.employee.service
 
 import com.crazyit.core.constant.enum.EmployeeStatus
 import com.crazyit.core.constant.enum.OrderType
@@ -20,7 +20,7 @@ interface EmployeeService {
 	fun load(id: Long): ResponseEntity<String>
 
 	fun loadPage(keywords: String?, orderType: OrderType?,
-	             orderProperty: String?, roleId: Long?, sex: Sex?,
-	             status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<String>
+				 orderProperty: String?, roleId: Long?, sex: Sex?,
+				 status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<String>
 
 }

@@ -1,7 +1,7 @@
-package com.crazyit.external.service.customer.impl
+package com.crazyit.foundation.customer.service.impl
 
 import com.crazyit.core.constant.enum.OrderType
-import com.crazyit.external.service.customer.CustomerService
+import com.crazyit.foundation.customer.service.CustomerService
 import com.crazyit.foundation.customer.domain.Customer
 import com.crazyit.foundation.customer.provider.CustomerProvider
 import com.crazyit.foundation.customer.query.CustomerQuery
@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 open class CustomerServiceImpl(
-	@Autowired var gson: Gson,
-	@Autowired var customerProvider: CustomerProvider
+		@Autowired var gson: Gson,
+		@Autowired var customerProvider: CustomerProvider
 ) : CustomerService {
 
 	override fun create(name: String, mobile: String, address: String, fax: String?): ResponseEntity<String> {

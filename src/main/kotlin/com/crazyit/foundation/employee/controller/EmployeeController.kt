@@ -1,11 +1,11 @@
-package com.crazyit.external.web.controller
+package com.crazyit.foundation.employee.controller
 
 import com.crazyit.core.constant.enum.EmployeeStatus
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.core.constant.enum.Sex
 import com.crazyit.foundation.employee.data.ClientEmployee
 import com.crazyit.foundation.employee.domain.Employee
-import com.crazyit.external.service.employee.EmployeeService
+import com.crazyit.foundation.employee.service.EmployeeService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams
@@ -50,8 +50,8 @@ open class EmployeeController(
 			value = "每页数据量，必须填写"))
 	@GetMapping
 	fun employeesGet(keywords: String?, orderType: OrderType?,
-	                 orderProperty: String?, roleId: Long?, sex: Sex?,
-	                 status: EmployeeStatus?, page: Int, size: Int ): ResponseEntity<String> {
+					 orderProperty: String?, roleId: Long?, sex: Sex?,
+					 status: EmployeeStatus?, page: Int, size: Int ): ResponseEntity<String> {
 		return this.employeeService.loadPage(
 			keywords = keywords, orderType = orderType, orderProperty = orderProperty,
 			roleId = roleId, sex = sex, status = status, page = page, size = size)
