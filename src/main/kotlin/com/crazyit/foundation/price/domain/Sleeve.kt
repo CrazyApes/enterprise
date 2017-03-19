@@ -11,7 +11,7 @@ import javax.persistence.Table
  */
 
 @Entity
-@Table(name = "whole_package_door")
+@Table(name = "sleeve")
 open class Sleeve(
         //所属模板节点Id
         @Column(nullable = false)

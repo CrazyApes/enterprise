@@ -32,8 +32,21 @@ open class WholePackageDoor(
         var doorLeafIncrementPrice: Long,
         //门套增量价格
         @Column(nullable = false)
-        var doorCoverIncrementPrice: Long,
+        var sleeveIncrementPrice: Long,
         //每增加一种颜色多少钱
         @Column(nullable = false)
-        var PricePerColor:Long
-) : AppEntity()
+        var pricePerColor:Long = 3214321L
+) : AppEntity(){
+
+        companion object {
+
+                /**
+                 * 验证用户输入的基础尺寸格式
+                 * 格式：如2100*900*300
+                 */
+                fun validateBaseSizePattern(baseSize: String): Boolean {
+                        return baseSize.matches(Regex("(\\d{4}\\*\\d{3,4}\\*\\d{3,4}){1}"))
+                }
+
+        }
+}

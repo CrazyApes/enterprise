@@ -29,7 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
     }
     @Test
     fun testCreateOne(){
-        priceTemplateService.createOne("节点一",2L,2,2,2)
+        priceTemplateService.createNode("节点一",2L,2,2,2)
     }
 
 }
