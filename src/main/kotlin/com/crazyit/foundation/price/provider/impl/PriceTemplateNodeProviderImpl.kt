@@ -16,8 +16,4 @@ open class PriceTemplateNodeProviderImpl(
         @Autowired  var priceTemplateNodeRepo: PriceTemplateNodeRepo
 ) : AppProviderImpl<PriceTemplateNode>(priceTemplateNodeRepo), PriceTemplateNodeProvider {
 
-    override fun createOne(title: String,customerId :Long,currentLevel :Int,nodeType: Int,parentId: Long?): PriceTemplateNode {
-            return this.priceTemplateNodeRepo.save(PriceTemplateNode(title = title,
-                    nodeType = nodeType,parentId = parentId,currentLevel = currentLevel,customerId= customerId));
-    }
 }

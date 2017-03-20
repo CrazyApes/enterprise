@@ -10,32 +10,35 @@ import javax.persistence.Table
  */
 
 @Entity
-@Table(name = "whole_package_door")
-open class WholePackageDoor(
+@Table(name = "PRODUCT_CONFIG")
+open class ProductConfig(
         //所属模板节点Id
         @Column(nullable = false)
-        var templateId :Long,
+        var templateId :Long = 0L,
         //客户Id
         @Column(nullable = false)
-        var customerId: Long,
+        var customerId: Long = 0L,
         //基础价格
         @Column(nullable = false)
-        var basePricae: Long,
+        var basePricae: Long = 0L,
         //基础尺寸
         @Column(length = 50)
-        var baseSize: String,
+        var baseSize: String= "",
         //增量计算单位
         @Column(length = 10)
-        var IncrementUnit: String,
+        var IncrementUnit: String = "",
         //门扇增量价格
         @Column(nullable = false)
-        var doorLeafIncrementPrice: Long,
+        var doorLeafIncrementPrice: Long = 0L,
         //门套增量价格
         @Column(nullable = false)
-        var sleeveIncrementPrice: Long,
+        var sleeveIncrementPrice: Long = 0L,
         //每增加一种颜色多少钱
         @Column(nullable = false)
-        var pricePerColor:Long = 3214321L
+        var pricePerColor:Long = 0L,
+        //产品类型Global
+        @Column(length = 20)
+        var productType :String = ""
 ) : AppEntity(){
 
         companion object {

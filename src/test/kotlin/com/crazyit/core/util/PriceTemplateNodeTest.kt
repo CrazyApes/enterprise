@@ -1,6 +1,7 @@
 package com.crazyit.core.util
 
 import com.crazyit.EnterpriseApplication
+import com.crazyit.foundation.price.domain.PriceTemplateNode
 import com.crazyit.foundation.price.provider.PriceTemplateNodeProvider
 import com.crazyit.foundation.price.service.PriceTemplateService
 import org.junit.Test
@@ -25,11 +26,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
     var priceTemplateService: PriceTemplateService
     @Test
     fun testCreate(){
-        priceTemplateNodeProvoder.createOne("节点一",2L,2,2,2)
+//        priceTemplateNodeProvoder.create(PriceTemplateNode("节点一",2L,2,"2",2))
     }
     @Test
     fun testCreateOne(){
-        priceTemplateService.createNode("节点一",2L,2,2,2)
+        priceTemplateService.createNode("节点一",2L,2,"2",2)
     }
 
 }

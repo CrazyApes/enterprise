@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity
  */
 
 interface PriceTemplateService {
-    fun createNode(title: String,customerId :Long,currentLevel :Int,nodeType: Int,parentId: Long?): ResponseEntity<String>
+    fun createNode(title: String,customerId :Long,currentLevel :Int,nodeType: String,parentId: Long?): ResponseEntity<String>
     fun createWPDoor(templateId:Long,customerId :Long,basePricae :Long,baseSize:String,IncrementUnit:String,doorLeafIncrementPrice:Long,pricePerColor:Long,sleeveIncrementPrice:Long):ResponseEntity<String>
-    fun findNodeContent(nodeType: Int,templateId: Long): ResponseEntity<String>
+    fun findNodeContent(nodeType: String,templateId: Long): ResponseEntity<String>
 }

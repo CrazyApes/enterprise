@@ -3,7 +3,7 @@ package com.crazyit.foundation.price.controller
 
 import com.crazyit.foundation.price.NodeContent
 import com.crazyit.foundation.price.domain.PriceTemplateNode
-import com.crazyit.foundation.price.domain.WholePackageDoor
+import com.crazyit.foundation.price.domain.ProductConfig
 import com.crazyit.foundation.price.service.PriceTemplateService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
@@ -38,11 +38,11 @@ open class PriceTemplateController(
                     value = "节点层级，前端根据父节点level+1获得"),
             ApiImplicitParam(name = "title", required = true, dataType = "String",
                     value = "节点名称，用户自定义"),
-            ApiImplicitParam(name = "nodeType", required = true, dataType = "Int",
+            ApiImplicitParam(name = "nodeType", required = true, dataType = "String",
                     value = "节点类型，0为产品系列名称，1为全套门，2为"))
     @PostMapping(value = "/createNode" )
     fun createOneNode(parentId: Long?, customerId: Long,
-                               currentLevel: Int, title: String, nodeType: Int): ResponseEntity<String> {
+                               currentLevel: Int, title: String, nodeType: String): ResponseEntity<String> {
         return this.priceTemplateService.createNode(title = title,
                 nodeType = nodeType,parentId = parentId,currentLevel = currentLevel,customerId= customerId)
     }
@@ -74,13 +74,18 @@ open class PriceTemplateController(
 
     @ApiOperation(value = "获取节点里面的内容", notes = "创建整套门的价格计算参数",response = NodeContent::class)
     @ApiImplicitParams(
-            ApiImplicitParam(name = "nodeType", required = true, dataType = "Long",
+            ApiImplicitParam(name = "nodeType", required = true, dataType = "String",
                     value = "所属节点的ID，在这个节点下面创建门的价格参数"),
             ApiImplicitParam(name = "templateId", required = true, dataType = "Long",
                     value = "价格所属的代理商Id"))
     @GetMapping(value = "getNodeContent" )
-    fun getNodeContent(@RequestParam("nodeType")nodeType: Int,@RequestParam("templateId")templateId:Long): ResponseEntity<String>{
+    fun getNodeContent(@RequestParam("nodeType")nodeType: String,@RequestParam("templateId")templateId:Long): ResponseEntity<String>{
         return this.priceTemplateService.findNodeContent(nodeType = nodeType,templateId = templateId)
     }
 
+    @ApiOperation(value = "获取价格配置树", notes = "初始化加载价格树",response = NodeContent::class)
+    @GetMapping(value = "getConfigTree" )
+    fun getNodeTree(){
+
+    }
 }
