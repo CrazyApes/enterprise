@@ -28,7 +28,7 @@ data class ClientEmployee(
 				id = employee.id,
 				username = auth.username,
 				name = employee.name,
-				roleTitle = employee.role.title,
+				roleTitle = employee.role.title!!,
 				headImageUri = employee.headImageUri,
 				sex = employee.sex.toString(),
 				birthday = dateFormat.format(employee.birthday),

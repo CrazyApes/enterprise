@@ -38,7 +38,7 @@ data class LoginEmployee(
 			return LoginEmployee(
 				token = this.createToken(employee),
 				id = employee.id,
-				roleTitle = employee.role.title,
+				roleTitle = employee.role.title!!,
 				name = employee.name,
 				headImageUri = employee.headImageUri,
 				sex = sex,

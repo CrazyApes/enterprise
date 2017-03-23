@@ -37,7 +37,7 @@ open class RoleController(
 			value = "每页数据量，必须填写"))
 	@GetMapping
 	fun rolesGet(keywords: String?, orderType: OrderType?,
-				 orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
+				 orderProperty: String?, page: Int, size: Int): ResponseEntity<*> {
 		return this.roleService.loadPage(
 			keywords = keywords,
 			orderType = orderType,

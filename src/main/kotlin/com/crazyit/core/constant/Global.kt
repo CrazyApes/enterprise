@@ -15,7 +15,7 @@ object Global {
 
 	val DEFAULT_HEAD_IMAGE_URI: String = ""
 
-	val DEFAULT_PAGEABLE_PAGE: Int = 0
+	val DEFAULT_PAGEABLE_PAGE: Int = 1
 
 	val DEFAULT_PAGEABLE_SIZE: Int = 10
 
