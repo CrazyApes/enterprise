@@ -27,5 +27,6 @@ object Global {
 	//节点类型
 	val NODE_TYPE_PRODUCT:String = "PRODUCT"
 	val NODE_TYPE_CONFIG:String ="CONFIG"
+	val NODE_TYPE_CUSTOMER:String = "CUSTOMER"
 
 }

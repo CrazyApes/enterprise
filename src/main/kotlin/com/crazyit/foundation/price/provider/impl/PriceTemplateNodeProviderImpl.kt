@@ -15,5 +15,7 @@ import org.springframework.transaction.annotation.Transactional
 open class PriceTemplateNodeProviderImpl(
         @Autowired  var priceTemplateNodeRepo: PriceTemplateNodeRepo
 ) : AppProviderImpl<PriceTemplateNode>(priceTemplateNodeRepo), PriceTemplateNodeProvider {
-
+    override fun findByParentId(parentId:Long): List<PriceTemplateNode> {
+        return priceTemplateNodeRepo.findByParentId(parentId);
+    }
 }

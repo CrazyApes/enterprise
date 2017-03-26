@@ -8,5 +8,5 @@ import com.crazyit.foundation.price.domain.PriceTemplateNode
  */
 
 interface PriceTemplateNodeProvider : AppProvider<PriceTemplateNode> {
-
+    fun findByParentId(parentId:Long):List<PriceTemplateNode>
 }
