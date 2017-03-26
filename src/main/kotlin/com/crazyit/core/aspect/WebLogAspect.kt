@@ -22,7 +22,7 @@ open class WebLogAspect {
 
 	val logger: Logger = LoggerFactory.getLogger("Web请求日志")
 
-	@Pointcut("execution(* com.crazyit.external.web..*.*(..))")
+	@Pointcut("execution(* com.crazyit.foundation.*.controller..*.*(..))")
 	fun pointCut() { /* do nothing */ }
 
 	@Before("pointCut()")

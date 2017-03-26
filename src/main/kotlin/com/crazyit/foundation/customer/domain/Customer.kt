@@ -15,15 +15,15 @@ open class Customer(
 
     // 客户姓名
 	@Column(length = 10,  nullable = false)
-	var name: String,
+	var name: String? = null,
 
 	// 客户手机号码
 	@Column(length = 11,  nullable = false, unique = true)
-    var mobile: String,
+    var mobile: String? = null,
 
     // 客户地址
     @Column(length = 80, nullable = false)
-    var address: String,
+    var address: String? = null,
 
     // 客户传真
     @Column(length = 15, unique = true)
@@ -37,6 +37,8 @@ open class Customer(
     var priceHeadId: Long? = null
 
 ) : AppEntity() {
+
+	constructor(): this(null, null, null, null, 0L, null)
 
 	companion object {
 

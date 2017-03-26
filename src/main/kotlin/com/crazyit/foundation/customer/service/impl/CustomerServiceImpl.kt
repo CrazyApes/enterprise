@@ -27,16 +27,16 @@ open class CustomerServiceImpl(
 	override fun create(name: String, mobile: String, address: String, fax: String?): ResponseEntity<String> {
 		if(!Customer.validateNamePattern(name)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("您填写的姓名格式错误（格式为：位数为2~5位，只能输入中文）")
+				.body(gson.toJson("您填写的姓名格式错误（格式为：位数为2~5位，只能输入中文）"))
 		} else if (!Customer.validateMobilePattern(mobile)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("您填写的手机号码格式不正确")
+				.body(gson.toJson("您填写的手机号码格式不正确"))
 		} else if (address.length > 80) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("地址的长度不能超过80位")
+				.body(gson.toJson("地址的长度不能超过80位"))
 		} else if (null != fax && fax.length > 15) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("您填写的传真不正确")
+				.body(gson.toJson("您填写的传真不正确"))
 		} else {
 			this.customerProvider.create(Customer(
 				name = name,
@@ -51,13 +51,13 @@ open class CustomerServiceImpl(
 	override fun loadOne(id: Long): ResponseEntity<String> {
 		val customer = this.customerProvider.load(id)
 		if (null == customer) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("很遗憾...我们没有这条数据")
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(gson.toJson("很遗憾...我们没有这条数据"))
 		} else {
 			return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(customer))
 		}
 	}
 
-	override fun loadPage(keywords: String?, orderType: OrderType?, orderProperty: String?, page: Int, size: Int): ResponseEntity<String> {
+	override fun loadPage(keywords: String?, orderType: OrderType?, orderProperty: String?, page: Int, size: Int): ResponseEntity<*> {
 		val customerPage: Page<Customer>
 		if (null == keywords && null == orderType && null == orderProperty) {
 			customerPage = this.customerProvider.loadAll(page, size)
@@ -68,6 +68,6 @@ open class CustomerServiceImpl(
 				orderProperty = orderProperty
 			), page, size)
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(customerPage))
+		return ResponseEntity.status(HttpStatus.OK).body(customerPage)
 	}
 }

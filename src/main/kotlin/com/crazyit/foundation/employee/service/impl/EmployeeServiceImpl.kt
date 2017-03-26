@@ -10,8 +10,8 @@ import com.crazyit.foundation.employee.domain.Employee
 import com.crazyit.foundation.employee.provider.EmployeeProvider
 import com.crazyit.foundation.employee.query.EmployeeQuery
 import com.crazyit.foundation.role.domain.Role
-import com.crazyit.foundation.role.provider.RoleProvider
 import com.crazyit.foundation.employee.service.EmployeeService
+import com.crazyit.foundation.role.provider.RoleProvider
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page

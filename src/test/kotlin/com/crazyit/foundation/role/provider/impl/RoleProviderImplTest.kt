@@ -1,6 +1,7 @@
-package com.crazyit.foundation.role.provider
+package com.crazyit.foundation.role.provider.impl
 
 import com.crazyit.EnterpriseApplication
+import com.crazyit.foundation.role.provider.RoleProvider
 import com.crazyit.foundation.role.query.RoleQuery
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional
 @ActiveProfiles("dev")
 @Transactional
 @Rollback
-class RoleProviderTest {
+class RoleProviderImplTest {
 
 	@Autowired
 	var roleProvider: RoleProvider? = null

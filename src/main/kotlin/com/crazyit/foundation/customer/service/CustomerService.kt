@@ -15,5 +15,5 @@ interface CustomerService {
 	fun loadOne(id: Long): ResponseEntity<String>
 
 	fun loadPage(keywords: String?, orderType: OrderType?, orderProperty: String?,
-                 page: Int, size: Int): ResponseEntity<String>
+                 page: Int, size: Int): ResponseEntity<*>
 }

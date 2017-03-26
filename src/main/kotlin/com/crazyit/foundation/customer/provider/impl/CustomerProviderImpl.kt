@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional
  */
 @Service
 @Transactional
-open class CustomerProviderImpl(
-	@Autowired var customerRepo: CustomerRepo
+open class CustomerProviderImpl @Autowired constructor(
+	 var customerRepo: CustomerRepo
 ) : AppProviderImpl<Customer>(customerRepo), CustomerProvider {
 
 	override fun loadPage(query: CustomerQuery, page: Int, size: Int): Page<Customer> {
