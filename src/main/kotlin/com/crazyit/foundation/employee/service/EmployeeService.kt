@@ -21,6 +21,6 @@ interface EmployeeService {
 
 	fun loadPage(keywords: String?, orderType: OrderType?,
 				 orderProperty: String?, roleId: Long?, sex: Sex?,
-				 status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<String>
+				 status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<*>
 
 }

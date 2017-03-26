@@ -14,17 +14,19 @@ import javax.persistence.Table
 open class EmployeeAuth(
 
 	@Column(nullable = false, updatable = false, unique = true)
-	var employeeId: Long,
+	var employeeId: Long? = null,
 
 	// 用户登录名
 	@Column(length = 20, nullable = false, updatable = false, unique = true)
-	var username: String,
+	var username: String? = null,
 
 	// 密码，以MD5加密的方式存储在数据库
 	@Column(length = 36, nullable = false)
-    var password: String
+    var password: String? = null
 
 ) : AppEntity() {
+
+	constructor() : this(null, null, null)
 
 	// 用户邮箱（暂未开通）
 	@Column(length = 40, unique = true)

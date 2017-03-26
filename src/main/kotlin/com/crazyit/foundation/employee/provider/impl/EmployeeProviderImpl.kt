@@ -24,10 +24,10 @@ import org.springframework.transaction.annotation.Transactional
  */
 @Service
 @Transactional
-open class EmployeeProviderImpl(
-	@Autowired val employeeRepo: EmployeeRepo,
-    @Autowired val employeeAuthRepo: EmployeeAuthRepo,
-    @Autowired val roleRepo: RoleRepo
+open class EmployeeProviderImpl @Autowired constructor(
+	var employeeRepo: EmployeeRepo,
+    var employeeAuthRepo: EmployeeAuthRepo,
+    var roleRepo: RoleRepo
 ) : AppProviderImpl<Employee>(employeeRepo) ,EmployeeProvider {
 
 	/**

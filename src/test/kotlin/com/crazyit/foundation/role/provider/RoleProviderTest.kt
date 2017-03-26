@@ -17,14 +17,15 @@ import org.springframework.transaction.annotation.Transactional
  */
 @RunWith(SpringJUnit4ClassRunner::class)
 @SpringBootTest(classes = arrayOf(EnterpriseApplication::class))
-@Transactional
 @ActiveProfiles("dev")
+@Transactional
+@Rollback
 class RoleProviderTest {
 
 	@Autowired
 	var roleProvider: RoleProvider? = null
 
-	@Test @Rollback
+	@Test
 	fun createTest() {
 		val title = "TEST01"
 		val role = this.roleProvider!!.create(title)
@@ -33,7 +34,7 @@ class RoleProviderTest {
 		assert(role.title == title)
 	}
 
-	@Test @Rollback
+	@Test
 	fun removeTest() {
 		val title = "TEST01"
 		val role = this.roleProvider!!.create(title)
@@ -44,7 +45,7 @@ class RoleProviderTest {
 		assert(null == queryRole)
 	}
 
-	@Test @Rollback
+	@Test
 	fun loadTest() {
 		val title = "TEST01"
 		val role = this.roleProvider!!.create(title)
@@ -53,7 +54,7 @@ class RoleProviderTest {
 		assert(id == queryRole.id)
 	}
 
-	@Test @Rollback
+	@Test
 	fun loadPageTest() {
 		val title = "Test01"
 		val role = this.roleProvider!!.create(title)
@@ -65,7 +66,7 @@ class RoleProviderTest {
 		assert(page.content[0].id == role.id)
 	}
 
-	@Test @Rollback
+	@Test
 	fun existsByTitleTest() {
 		val title = "Test01"
 		this.roleProvider!!.create(title)

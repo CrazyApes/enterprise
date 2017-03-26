@@ -51,7 +51,7 @@ open class EmployeeController(
 	@GetMapping
 	fun employeesGet(keywords: String?, orderType: OrderType?,
 					 orderProperty: String?, roleId: Long?, sex: Sex?,
-					 status: EmployeeStatus?, page: Int, size: Int ): ResponseEntity<String> {
+					 status: EmployeeStatus?, page: Int, size: Int ): ResponseEntity<*> {
 		return this.employeeService.loadPage(
 			keywords = keywords, orderType = orderType, orderProperty = orderProperty,
 			roleId = roleId, sex = sex, status = status, page = page, size = size)

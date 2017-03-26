@@ -57,7 +57,7 @@ open class EmployeeQuery(
 				val path: Path<Sex> = root.get("sex")
 				query.where(builder.equal(path, sex))
 			}
-			if (null == status) {
+			if (null != status) {
 				val path: Path<EmployeeStatus> = root.get("status")
 				query.where(builder.equal(path, status))
 			}
