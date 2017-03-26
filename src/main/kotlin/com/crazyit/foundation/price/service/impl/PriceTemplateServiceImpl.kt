@@ -71,7 +71,7 @@ open class PriceTemplateServiceImpl(
         val customerNodes = mutableListOf<TreeNode>();
         for (customer in customers){
             var children = mutableListOf<TreeNode>();
-            val customerNode = TreeNode(name = customer.name,nodeType = Global.NODE_TYPE_CUSTOMER,
+            val customerNode = TreeNode(name = customer.name!!,nodeType = Global.NODE_TYPE_CUSTOMER,
                                 nodeId = customer.id,children = children);
             customerNodes.add(customerNode);
             var priceTemplateNodes = priceTemplateNodeProvider.findByParentId(customer.id);
