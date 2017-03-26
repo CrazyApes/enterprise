@@ -30,7 +30,7 @@ open class PriceTemplateServiceImpl(
         @Autowired val productConfigProvider: ProductConfigProvider,
         @Autowired val customerProvider:CustomerProvider
         ) : PriceTemplateService {
-    override fun createWPDoor(templateId: Long, customerId: Long, basePricae: Long, baseSize: String, IncrementUnit: String, doorLeafIncrementPrice: Long, pricePerColor: Long,sleeveIncrementPrice:Long): ResponseEntity<String> {
+    override fun createPriceConfig(templateId: Long, customerId: Long, basePricae: Long, baseSize: String, IncrementUnit: String, doorLeafIncrementPrice: Long, pricePerColor: Long,sleeveIncrementPrice:Long): ResponseEntity<String> {
         if (!ProductConfig.validateBaseSizePattern(baseSize)) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                     .body("整套门的基础尺寸格式不正确！格式如（2100*900*300）")
