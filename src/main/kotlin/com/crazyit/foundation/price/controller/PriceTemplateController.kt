@@ -62,11 +62,11 @@ open class PriceTemplateController(
             ApiImplicitParam(name = "pricePerColor", required = true, dataType = "Long",
                     value = "每新增一种颜色加多少钱"),
             ApiImplicitParam(name = "basePricae", required = true, dataType = "Long",
-            value = "一整套门的基础价格"))
-    @PostMapping(value = "/createWPDoor" )
-    fun cereateWPDoor(templateId: Long, customerId: Long, basePricae: Long, baseSize: String,
+            value = "基础价格"))
+    @PostMapping(value = "/createPriceConfig" )
+    fun createPriceConfig(templateId: Long, customerId: Long, basePricae: Long, baseSize: String,
                       IncrementUnit: String, doorLeafIncrementPrice: Long, pricePerColor: Long,sleeveIncrementPrice:Long): ResponseEntity<String> {
-        return this.priceTemplateService.createWPDoor(templateId=templateId,customerId = customerId,
+        return this.priceTemplateService.createPriceConfig(templateId=templateId,customerId = customerId,
                 basePricae = basePricae,IncrementUnit = IncrementUnit,sleeveIncrementPrice = sleeveIncrementPrice ,doorLeafIncrementPrice = doorLeafIncrementPrice,pricePerColor = pricePerColor,baseSize = baseSize)
     }
 
@@ -76,9 +76,17 @@ open class PriceTemplateController(
                     value = "所属节点的ID，在这个节点下面创建门的价格参数"),
             ApiImplicitParam(name = "templateId", required = true, dataType = "Long",
                     value = "价格所属的代理商Id"))
-    @GetMapping(value = "getNodeContent" )
+    @GetMapping(value = "/getNodeContent" )
     fun getNodeContent(@RequestParam("nodeType")nodeType: String,@RequestParam("templateId")templateId:Long): ResponseEntity<String>{
         return this.priceTemplateService.findNodeContent(nodeType = nodeType,templateId = templateId)
     }
 
+   /* @ApiOperation(value = "获取节点树", notes = "获取节点树木结构")
+    @ApiImplicitParams(
+            ApiImplicitParam(name = "nodeType", required = true, dataType = "Long",
+                    value = "不需要传参数，写这个主要是为了不报错"))
+    @GetMapping(value = "/getNodeTree" )
+    fun getNodeTree(): ResponseEntity<String>{
+        return this.priceTemplateService.getTreeNodes()
+    }*/
 }
