@@ -13,12 +13,14 @@ open class Role(
 
 	// 角色名
 	@Column(length = 10, nullable = false, updatable = false, unique = true)
-	var title: String
+	var title: String? = null
 
 //	@OneToMany(fetch = FetchType.LAZY)
 //	var permissionList: List<Permission> = ArrayList<Permission>()
 
 ) : AppEntity() {
+
+	constructor(): this(null)
 
 	companion object {
 

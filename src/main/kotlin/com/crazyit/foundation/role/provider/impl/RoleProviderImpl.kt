@@ -21,10 +21,10 @@ import org.springframework.transaction.annotation.Transactional
  */
 @Service
 @Transactional
-open class RoleProviderImpl(
-	@Autowired val roleRepo: RoleRepo,
-    @Autowired val employeeRepo: EmployeeRepo
-) : AppProviderImpl<Role>(roleRepo), RoleProvider {
+open class RoleProviderImpl @Autowired constructor(
+	var roleRepo: RoleRepo,
+	var employeeRepo: EmployeeRepo
+): AppProviderImpl<Role>(roleRepo), RoleProvider {
 
 	/**
 	 * 新增角色的方法
@@ -56,18 +56,22 @@ open class RoleProviderImpl(
 	 * @throws IsUsedDataException 还有员工在使用被删除的角色时抛出
 	 */
 	override fun remove(id: Long) {
-		val role = this.roleRepo.findOne(id) ?: throw MismatchingDataException(
-			message = "Role(id = $id)数据不存在",
-			notice = "加载角色信息失败，请稍后重试或联系管理员"
-		)
-		val count = this.employeeRepo.countByRole(role)
-		if (count > 0L) {
-			throw IsUsedDataException(
-				message = "存在role = $role 的Employee数据，不能删除id = $id 的Role",
-				notice = "该角色还有员工在使用，删除失败"
+		val role = this.roleRepo.findOne(id)
+		if (null == role) {
+			throw MismatchingDataException(
+				message = "Role(id = $id)数据不存在",
+				notice = "数据不存在，请稍后重试或联系管理员"
 			)
 		} else {
-			this.roleRepo.delete(id)
+			val count = this.employeeRepo.countByRole(role)
+			if (count > 0L) {
+				throw IsUsedDataException(
+					message = "存在role = $role 的Employee数据，不能删除id = $id 的Role",
+					notice = "该角色还有员工在使用，删除失败"
+				)
+			} else {
+				this.roleRepo.delete(id)
+			}
 		}
 	}
 

@@ -7,4 +7,4 @@ package com.crazyit.core.app
 abstract class AppException(
 	override var message: String,
 	open var notice: String
-) : Throwable(message)
+) : RuntimeException(message)

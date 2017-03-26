@@ -1,4 +1,4 @@
-package com.crazyit.external.web
+package com.crazyit.web
 
 import com.crazyit.core.app.AppException
 import com.google.gson.Gson

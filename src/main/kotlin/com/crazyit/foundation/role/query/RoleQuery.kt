@@ -12,6 +12,12 @@ import javax.persistence.criteria.Path
  */
 open class RoleQuery() : AppQuery<Role>() {
 
+	constructor(keywords: String?) : this() {
+		if (null != keywords && "" != keywords) {
+			this.keywords = keywords
+		}
+	}
+
 	constructor(keywords: String?, orderType: OrderType?, orderProperty: String?) : this() {
 		if (null != keywords && "" != keywords) {
 			this.keywords = keywords

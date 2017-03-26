@@ -39,7 +39,7 @@ open class EmployeeServiceImpl(
 		} else if (auth.password != Security.encodeMD5(password)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(gson.toJson("您输入的密码不正确"))
 		} else {
-			val employee = this.employeeProvider.load(auth.employeeId)
+			val employee = this.employeeProvider.load(auth.employeeId!!)
 			if (null == employee) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(gson.toJson("加载账号信息失败，请稍后重试或联系管理员"))
 			} else {
@@ -55,19 +55,19 @@ open class EmployeeServiceImpl(
 	override fun register(username: String, password: String, name: String, roleId: Long): ResponseEntity<String> {
 		if (!Employee.validateUsernamePattern(username)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("您填写的用户名格式错误（格式为：位数为10~20位，必须包含大写字母，此外还可以输入小写字母和数字）")
+				.body(gson.toJson("您填写的用户名格式错误（格式为：位数为10~20位，必须包含大写字母，此外还可以输入小写字母和数字）"))
 		} else if (!Employee.validatePasswordPattern(password)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("您填写的密码格式错误（格式为：位数为8~16位，必须包含字母和数字，此外还可以输入~、#、_、.）")
+				.body(gson.toJson("您填写的密码格式错误（格式为：位数为8~16位，必须包含字母和数字，此外还可以输入~、#、_、.）"))
 		} else if (!Employee.validateNamePattern(name)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("您填写的姓名格式错误（格式为：位数为2~5位，只能输入中文）")
+				.body(gson.toJson("您填写的姓名格式错误（格式为：位数为2~5位，只能输入中文）"))
 		} else if (0L == roleId) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("请选择员工角色")
+				.body(gson.toJson("请选择员工角色"))
 		} else if (this.employeeProvider.existsByUsername(username)) {
 			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-				.body("用户名 $username 已经被注册，请更换用户名后重试")
+				.body(gson.toJson("用户名 $username 已经被注册，请更换用户名后重试"))
 		} else {
 			this.employeeProvider.create(
 				username = username,
@@ -101,7 +101,7 @@ open class EmployeeServiceImpl(
 
 	override fun loadPage(keywords: String?, orderType: OrderType?,
 						  orderProperty: String?, roleId: Long?, sex: Sex?,
-						  status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<String> {
+						  status: EmployeeStatus?, page: Int, size: Int): ResponseEntity<*> {
 		val role: Role?
 		if (null == roleId || roleId == 0L) {
 			role = null
@@ -113,7 +113,7 @@ open class EmployeeServiceImpl(
 			orderProperty = orderProperty, role = role, sex = sex,
 			status = status)
 		val employeePage: Page<Employee> = this.employeeProvider.loadPage(query = query, page = page, size = size)
-		return ResponseEntity.status(HttpStatus.OK).body(gson.toJson(employeePage))
+		return ResponseEntity.status(HttpStatus.OK).body(employeePage)
 	}
 
 }

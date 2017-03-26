@@ -15,18 +15,21 @@ import javax.persistence.*
  */
 @Entity
 @Table(name = "EMPLOYEE")
-open class Employee(
+open class Employee(): AppEntity() {
+
+	constructor(name: String, role: Role): this() {
+		this.name = name
+		this.role = role
+	}
 
 	// 用户姓名
 	@Column(length = 5, nullable = false)
-	var name: String,
+	var name: String? = null
 
 	// 用户角色
 	@ManyToOne(targetEntity = Role::class)
-    @JoinColumn(name = "ROLE_ID")
-    var role: Role
-
-) : AppEntity() {
+	@JoinColumn(name = "ROLE_ID")
+	var role: Role? = null
 
 	// 用户头像图片路径
 	@Column(length = 40, nullable = false)
@@ -54,8 +57,13 @@ open class Employee(
 		 * @param username 客户端键入的
 		 */
 		fun validateUsernamePattern(username: String): Boolean {
-			if (!username.matches(Regex("^[a-zA-Z0-9]{10,20}$"))) return false
-			else return username.matches(Regex("[A-Z]+"))
+			if (!username.matches(Regex("^[a-zA-Z0-9]{10,20}$"))) {
+				return false
+			} else {
+				val result = username.matches(Regex("^[a-z0-9]*[A-Z]+[a-z0-9]*$"))
+				println(result)
+				return result
+			}
 		}
 
 		/**
@@ -64,8 +72,8 @@ open class Employee(
 		 */
 		fun validatePasswordPattern(password: String): Boolean {
 			if (!password.matches(Regex("^[a-zA-Z0-9~#_.]{8,16}$"))) return false
-			else if (!password.matches(Regex("[a-zA-Z]+"))) return false
-			else return password.matches(Regex("[0-9]+"))
+			else if (!password.matches(Regex("^[0-9~#_.]*[a-zA-Z]+[0-9~#_.]*$"))) return false
+			else return password.matches(Regex("^[a-zA-Z~#_.]*[0-9]+[a-zA-Z~#_.]*$"))
 		}
 
 		/**

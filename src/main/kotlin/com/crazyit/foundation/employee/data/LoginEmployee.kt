@@ -38,8 +38,8 @@ data class LoginEmployee(
 			return LoginEmployee(
 				token = this.createToken(employee),
 				id = employee.id,
-				roleTitle = employee.role.title,
-				name = employee.name,
+				roleTitle = employee.role!!.title!!,
+				name = employee.name!!,
 				headImageUri = employee.headImageUri,
 				sex = sex,
 				birthday = dateFormat.format(employee.birthday),
@@ -52,8 +52,8 @@ data class LoginEmployee(
 			return Token(
 				payLoad = TokenPayload(
 					id = employee.id,
-					name = employee.name,
-					roleId = employee.role.id,
+					name = employee.name!!,
+					roleId = employee.role!!.id,
 					status = employee.status
 				)
 			).toString()
