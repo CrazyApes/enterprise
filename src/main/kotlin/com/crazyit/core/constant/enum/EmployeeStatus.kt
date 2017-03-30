@@ -6,5 +6,5 @@ package com.crazyit.core.constant.enum
  */
 enum class EmployeeStatus {
 
-	ACTIVE, INACTIVE
+	ACTIVE, INACTIVE, ALL
 }

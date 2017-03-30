@@ -38,7 +38,7 @@ open class EmployeeQuery(
 		if (null != sex) {
 			this.sex = sex
 		}
-		if (null != status) {
+		if (null != status && !EmployeeStatus.ALL.equals(status)) {
 			this.status = status
 		}
 	}
