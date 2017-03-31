@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 /**
  * 员工相关CRUD Restful控制器
@@ -106,6 +107,27 @@ open class EmployeeController(
 	/**
 	 *
 	 */
-//	@PutMapping
-//	fun employeePut() {}
+	@ApiOperation(value = "修改员工信息", notes = "修改指定ID的员工信息")
+	@ApiImplicitParams(
+		ApiImplicitParam(name = "id", required = true, dataType = "Long", value = "员工ID"),
+		ApiImplicitParam(name = "name", required = false, dataType = "String",
+			value = "员工姓名（格式为：位数为2~5位，只能输入中文）"),
+		ApiImplicitParam(name = "roleId", required = false, dataType = "Long", value = "角色ID"),
+		ApiImplicitParam(name = "password", required = false, dataType = "String",
+			value = "员工密码（格式为：位数为8~16位，必须包含字母和数字，此外还可以输入~、#、_、.）"),
+		ApiImplicitParam(name = "headImageUri", required = false, dataType = "String",
+			value = "员工头像图片地址"),
+		ApiImplicitParam(name = "sex", required = false, dataType = "String",
+			value = "性别，由于在服务器端对应的类型是enum，所以只能输入MALE（男）和FEMALE（女）和SECRET（保密）"),
+		ApiImplicitParam(name = "birthday", required = false, dataType = "Date",
+			value = "员工生日"),
+		ApiImplicitParam(name = "status", required = false, dataType = "String",
+			value = "用户状态，由于在服务器端对应的类型是enum，所以只能输入ACTIVE（在职）和INACTIVE（离职）")
+	)
+	@PutMapping
+	fun employeePut(id: Long, name: String?, roleId: Long?,
+	                password: String?, headImageUri: String?,
+	                sex: Sex?, birthday: Date?, status: EmployeeStatus?): ResponseEntity<String> {
+		return this.employeeService.modify(id, name, roleId, password, headImageUri, sex, birthday, status)
+	}
 }

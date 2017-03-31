@@ -12,6 +12,8 @@ interface CustomerService {
 
 	fun create(name: String, mobile: String, address: String, fax: String?): ResponseEntity<String>
 
+	fun modify(id: Long, name: String?, mobile: String?, address: String?, fax: String?): ResponseEntity<String>
+
 	fun loadOne(id: Long): ResponseEntity<String>
 
 	fun loadPage(keywords: String?, orderType: OrderType?, orderProperty: String?,

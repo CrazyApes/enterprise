@@ -39,6 +39,16 @@ open class RoleServiceImpl(
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null)
 	}
 
+	override fun modify(title: String): ResponseEntity<String> {
+		if (!Role.validateTitlePattern(title)) {
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+				.body(gson.toJson("您填写的角色标题格式错误（格式为：位数为4~10位，只能输入中文）"))
+		} else {
+			this.roleProvider.modify(title)
+			return ResponseEntity.status(HttpStatus.CREATED).body(null)
+		}
+	}
+
 	override fun load(id: Long): ResponseEntity<String> {
 		val role = this.roleProvider.load(id)
 		if (null == role) {

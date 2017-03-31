@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 /**
  * @author CrazyApeDX
@@ -82,6 +83,11 @@ open class EmployeeServiceImpl(
 	override fun remove(id: Long): ResponseEntity<String> {
 		this.employeeProvider.remove(id)
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null)
+	}
+
+	override fun modify(id: Long, name: String?, roleId: Long?, password: String?, headImageUri: String?, sex: Sex?, birthday: Date?, status: EmployeeStatus?): ResponseEntity<String> {
+		this.employeeProvider.modify(id, name, roleId, password, headImageUri, sex, birthday, status)
+		return ResponseEntity.status(HttpStatus.CREATED).body(null)
 	}
 
 	override fun load(id: Long): ResponseEntity<String> {

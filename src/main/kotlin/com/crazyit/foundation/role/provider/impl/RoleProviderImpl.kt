@@ -76,8 +76,20 @@ open class RoleProviderImpl @Autowired constructor(
 	}
 
 
-	override fun modify(entity: Role): Role {
-		throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
+	override fun modify(title: String): Role {
+		if (title.length > 10) {
+			throw InvalidDataException(
+				message = "Role(title = $title) 长度超过10位",
+				notice = "角色标题不能超过10位"
+			)
+		} else if (this.existsByTitle(title)) {
+			throw RepeatDataException(
+				message = "Role(title = $title)数据已经存在",
+				notice = "标题 $title 已经存在，请更换标题后重试"
+			)
+		} else {
+			return this.roleRepo.save(Role(title = title))
+		}
 	}
 
 	/**

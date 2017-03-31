@@ -65,4 +65,20 @@ open class CustomerController(
 	fun customersPost(name: String, mobile: String, address: String, fax: String?): ResponseEntity<String> {
 		return this.customerService.create(name, mobile, address, fax)
 	}
+
+	@ApiOperation(value = "修改客户（经销商）", notes = "修改经销商的部分信息")
+	@ApiImplicitParams(
+		ApiImplicitParam(name = "id", required = true, dataType = "Long", value = "客户ID"),
+		ApiImplicitParam(name = "name", required = false, dataType = "String",
+			value = "姓名（格式为：位数为2~5位，只能输入中文）"),
+		ApiImplicitParam(name = "mobile", required = false, dataType = "String",
+			value = "电话号码（格式为：以1开头的11位数字）"),
+		ApiImplicitParam(name = "address", required = false, dataType = "String",
+			value = "地址，长度不超过80位"),
+		ApiImplicitParam(name = "fax", required = false, dataType = "String",
+			value = "传真号码，长度不超过15位，可以不填写"))
+	@PutMapping
+	fun customerPut(id: Long, name: String?, mobile: String?, address: String?, fax: String?): ResponseEntity<String> {
+		return this.customerService.modify(id, name, mobile, address, fax)
+	}
 }

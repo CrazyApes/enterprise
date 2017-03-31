@@ -13,6 +13,8 @@ interface RoleService {
 
 	fun remove(id: Long): ResponseEntity<String>
 
+	fun modify(title: String): ResponseEntity<String>
+
 	fun load(id: Long): ResponseEntity<String>
 
 	fun loadPage(keywords: String?, orderType: OrderType?,

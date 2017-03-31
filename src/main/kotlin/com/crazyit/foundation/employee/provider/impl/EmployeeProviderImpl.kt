@@ -1,6 +1,8 @@
 package com.crazyit.foundation.employee.provider.impl
 
 import com.crazyit.core.app.AppProviderImpl
+import com.crazyit.core.constant.enum.EmployeeStatus
+import com.crazyit.core.constant.enum.Sex
 import com.crazyit.core.util.Security
 import com.crazyit.core.exception.InvalidDataException
 import com.crazyit.core.exception.MismatchingDataException
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 /**
  * @author CrazyApeDX
@@ -28,7 +31,7 @@ open class EmployeeProviderImpl @Autowired constructor(
 	var employeeRepo: EmployeeRepo,
     var employeeAuthRepo: EmployeeAuthRepo,
     var roleRepo: RoleRepo
-) : AppProviderImpl<Employee>(employeeRepo) ,EmployeeProvider {
+) : AppProviderImpl<Employee>(employeeRepo), EmployeeProvider {
 
 	/**
 	 * 新建用户的方法，也是快速注册用户的方法
@@ -112,7 +115,8 @@ open class EmployeeProviderImpl @Autowired constructor(
 		this.employeeAuthRepo.deleteByEmployeeId(id)
 	}
 
-	override fun modify(id: Long, name: String?, roleId: Long?, password: String?): Employee {
+	override fun modify(id: Long, name: String?, roleId: Long?, password: String?, headImageUri: String?,
+	                    sex: Sex?, birthday: Date?, status: EmployeeStatus?): Employee {
 		val employee = this.employeeRepo.findOne(id) ?: throw MismatchingDataException(
 			message = "Employee(id = $id)数据不存在",
 			notice = "加载员工基础信息失败，请稍后重试或联系管理员")
@@ -139,8 +143,14 @@ open class EmployeeProviderImpl @Autowired constructor(
 			else auth.password = password
 			this.employeeAuthRepo.save(auth)
 		}
+		if (null != headImageUri) employee.headImageUri = headImageUri
+		if (null != sex) employee.sex = sex
+		if (null != birthday) employee.birthday = birthday
+		if (null != status) employee.status = status
 		return this.employeeRepo.save(employee)
 	}
+
+
 
 	/**
 	 * 查询指定id的员工数据的方法

@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import javax.xml.ws.Response
 
 /**
  * @author CrazyApeDX
@@ -46,6 +47,31 @@ open class CustomerServiceImpl(
 			))
 			return ResponseEntity.status(HttpStatus.OK).body(null)
 		}
+	}
+
+	override fun modify(id: Long, name: String?, mobile: String?, address: String?, fax: String?): ResponseEntity<String> {
+		val customer = this.customerProvider.load(id) ?:
+			return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("加载经销商信息失败，请稍后重试或联系管理员")
+		if (null != mobile) {
+			if (this.customerProvider.existsByMobile(mobile))
+				return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("您输入的手机号码已经存在，请更换后重试")
+			else
+				customer.mobile = mobile
+		}
+		if (null != fax) {
+			if (this.customerProvider.existsByFax(fax))
+				return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("您输入的传真号码已经存在，请更换后重试")
+			else
+				customer.fax = fax
+		}
+		if (null != address) {
+			if (address.length > 80)
+				return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("地址的长度不能超过80位，请更改后重试")
+			else
+				customer.address = address
+		}
+		this.customerProvider.modify(customer)
+		return ResponseEntity.status(HttpStatus.CREATED).body(null)
 	}
 
 	override fun loadOne(id: Long): ResponseEntity<String> {

@@ -15,6 +15,8 @@ interface RoleProvider : AppProvider<Role> {
 
 	fun create(title: String): Role
 
+	fun modify(title: String): Role
+
 	fun loadPage(query: RoleQuery, page: Int, size: Int): Page<Role>
 
 	fun existsByTitle(title: String): Boolean

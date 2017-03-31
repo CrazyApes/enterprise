@@ -4,6 +4,7 @@ import com.crazyit.core.constant.enum.EmployeeStatus
 import com.crazyit.core.constant.enum.OrderType
 import com.crazyit.core.constant.enum.Sex
 import org.springframework.http.ResponseEntity
+import java.util.*
 
 /**
  * @author CrazyApeDX
@@ -16,6 +17,9 @@ interface EmployeeService {
 	fun register(username: String, password: String, name: String, roleId: Long): ResponseEntity<String>
 
 	fun remove(id: Long): ResponseEntity<String>
+
+	fun modify(id: Long, name: String?, roleId: Long?, password: String?, headImageUri: String?,
+	           sex: Sex?, birthday: Date?, status: EmployeeStatus?): ResponseEntity<String>
 
 	fun load(id: Long): ResponseEntity<String>
 
