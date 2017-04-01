@@ -2,6 +2,7 @@ package com.crazyit.core.util
 
 import org.apache.commons.codec.binary.Base64
 import org.apache.commons.codec.binary.Hex
+import org.apache.commons.codec.digest.DigestUtils
 import javax.crypto.Mac
 import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
@@ -25,7 +26,7 @@ open class Security {
 		}
 
 		fun encodeMD5(code: String): String {
-			return ""
+			return DigestUtils.md5Hex(code)
 		}
 
 		fun encodeHS256(code: String, secret: ByteArray): String {
